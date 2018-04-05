@@ -1,0 +1,6 @@
+  [2018-04-03 | 08:34:10] [ Failss ] [ http://127.0.0.1/new/public/css/style.css ] new download has been launched by [ ::1 ] 
+  [2018-04-03 | 08:34:27] [ Fail ] [ http://127.0.0.1/new/public/css/style.css ] new download has been launched by [ ::1 ] 
+  [2018-04-03 | 08:36:07] [ Fail ] [ http://127.0.0.1/new/public/css/style.css ] new download has been launched by [ ::1 ] 
+  [2018-04-03 | 08:41:17] [ Success ] [ http://127.0.0.1/new/public/css/styles.css ] new download has been launched by [ ::1 ] 
+  [2018-04-03 | 08:41:48] [ Success ] [ http://127.0.0.1/new/public/js\styles.view.js ] new download has been launched by [ ::1 ] 
+  [2018-04-03 | 11:48:22] [ Success ] [ http://127.0.0.1/new/public/css/styles.css ] new download has been launched by [ ::1 ] 
