@@ -1,5 +1,5 @@
 # [Luna PHP MVC framework](http://github.com/.../Luna)
-    Built by Aouf Ali 2018 ©
+    Built by Aouf Ali 2018
 
 ## Features
 * **Architecture:**
