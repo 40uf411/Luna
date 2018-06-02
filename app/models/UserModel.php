@@ -3,6 +3,7 @@
 namespace Luna\App\Model;
 
 use Luna\Core\Model;
+use Luna\lib\migration\Migration;
 
 class User extends Model
 {
@@ -14,7 +15,7 @@ class User extends Model
     {
         parent::__construct();
 
-        $result = $this->db->getData(false, "name", $this->table,"where id = " . $id);
+        $result =  Migration::fetch("SELECT name FROM users WHERE id = $id");
 
         $this->name = $result['name'];
     }

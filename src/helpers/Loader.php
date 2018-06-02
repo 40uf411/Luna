@@ -4,11 +4,45 @@ namespace Luna\Helpers;
 
 class Loader{
 
+
+    //
+
+    public static function folder($folder, array $files)
+    {
+
+        switch ($folder)
+        {
+            case "abstracts" : $fun = 'abst'; break;
+            case "providers" : $fun = 'provider'; break;
+            case "configs" : $fun = 'config'; break;
+            case "validators" : $fun = 'validator'; break;
+        }
+        if (isset($fun))
+        {
+            foreach ($files as $file => $key)
+            {
+                self::$fun($key);
+            }
+        }
+        else
+
+            return FAILURE;
+
+    }
+
+    // Loading all the packages
+
+    public static function vendor()
+    {
+        require_once VENDOR_PATH . "autoload.php";
+    }
+
+
     // Load library classes
 
-    public static function library($lib)
+    public static function lib()
     {
-        require_once LIB_PATH . $lib . ".php";
+        require_once LIB_PATH . "autoload.php";
 
     }
 
@@ -17,7 +51,16 @@ class Loader{
 
     public static function helper($helper)
     {
-        require_once HELPER_PATH . $helper . "Helper.php";
+        require_once HELPER_PATH . $helper . ".php";
+
+    }
+
+
+    // loader abstract class. Naming conversion is *Provider.php;
+
+    public static function abst($abstract)
+    {
+        require_once CORE_PATH . $abstract . ".php";
 
     }
 
@@ -26,7 +69,7 @@ class Loader{
 
     public static function provider($provider)
     {
-        require_once PROVIDERS_PATH . $provider . "Provider.php";
+        require_once SERVICES_PROVIDERS_PATH . $provider . "ServiceProvider.php";
 
     }
 
@@ -53,8 +96,7 @@ class Loader{
 
     public static function config($config)
     {
-        require_once CONFIG_PATH . $config . ".config.php";
-
+        return require_once CONFIG_PATH . $config . ".config.php";
     }
 
 
@@ -62,7 +104,55 @@ class Loader{
 
     public static function view($view)
     {
-        require_once VIEW_PATH . $view . ".view.php";
+        require_once VIEW_PATH . $view . "View.php";
+
+    }
+
+
+    //
+
+    public static function validator($validator)
+    {
+        require_once VALIDATORS_PATH . $validator . "Validator.php";
+    }
+
+    //
+
+    public static function php($name, $return = true)
+    {
+        if ($return)
+
+            return HTML_PATH . "dynamic" . DS . $name . ".php";
+
+        else
+
+            echo HTML_PATH . "dynamic" . DS . $name . ".php";
+    }
+
+
+    // loader css files. Naming conversion is *.css;
+
+    public static function html($html , $return = false, $content = true )
+    {
+        if ($return)
+
+            if ($content)
+
+                return file_get_contents(HTML_PATH . "static" . DS . $html . ".html");
+
+            else
+
+                return HTML_PATH . "static" . DS . $html . ".html";
+
+        else
+
+            if ($content)
+
+                echo file_get_contents(HTML_PATH . "static" . DS . $html . ".html");
+
+            else
+
+                echo HTML_PATH . "static" . DS . $html . ".html";
 
     }
 

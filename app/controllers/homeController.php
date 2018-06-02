@@ -1,52 +1,139 @@
 <?php
-use Luna\Providers\SessionProvider;
-use Luna\Providers\CookiesProvider;
-use Luna\Providers\HttpProvider as http;
-use Luna\Providers\FilesProvider;
+
 use Luna\Core\Controller;
 use Luna\App\Model\User;
+use Luna\lib\migration\Migration;
+use Dompdf\Dompdf;
 use Luna\Helpers\Loader;
 
 class homeController extends Controller
 {
+    public static function init()
+    {
+        parent::init();
+
+        // the rest of the code
+
+    }
+
+    public static function home()
+    {
+
+    }
 
     public  function index($pram = null)
     {
 
-        $this->model('User');
+/*
+        Migration::update([
+            "table" => "users",
+            "condition" => "id = 25",
+            "values" => ["name" => "Linda"]
+        ]);
+*/
 
-        if (isset($pram[0]) && $pram[0] != null && intval($pram[0]) != 0 )
+
+
+        //$data = Migration::execute(SQL_PATH . "test.sql");
+        //echo "<pre>";
+        //print_r($data->fetchAll());
+        //echo "</pre>";
+
+        //var_dump(ob_get_contents());
+
+
+     /*    Migration::build([
+            'db_name' => "tye",
+            'table_name' => "test",
+            'attribute' => [
+                'id' => [
+                    'type' => "int",
+                    'length' => '20',
+                    'null' => false,
+                    'auto_increment' => true,
+                ],
+            ],
+            'engine' => 'InnoDB',
+            'charset' => 'UTF8',
+            'primary_key' => 'id',
+        ]);
+
+
+/*
+
+              var_dump(Auth::form([
+            'name' => "ali aouf",
+            'password' => 'hi there',
+            'co-pass' => 'hi there',
+            'input' => 'http://hi.com'
+        ],[
+            'name' => ['min_len' => 5,
+                        'max_len' => 10,
+                        'verify' => 'empty'
+
+                        ],
+            'password' => [
+                            'min_len' => 3,
+                            ],
+            'co-pass' => ['equal' => 'password'],
+            'input' =>['min_len' => 5,'verify' => 'email']
+        ]));
+
+             //print_r($pram);
+
+*//*
+
+        self::model('User');
+
+
+        if (isset($pram['id']) && $pram['id'] != null && intval($pram['id']) != 0 )
         {
-            $user = new User($pram[0]);
+            $user = new User($pram['id']);
 
             $name = $user->name;
         }
 
-        elseif(isset($pram[0]) && $pram[0] != null)
-            $name = $pram[0];
+        elseif(isset($pram['id']) && $pram['id'] != null)
+
+            $name = $pram['id'];
 
         else
             $name = 'here';
 
-        self::view('welcome', $name);
+
+//        echo \Luna\lib\speller\Speller::render_string(4780052);
+
+
+        self::view([
+            'classname' => "welcome",
+
+            //'html_page' => Loader::html("welcome",true,false),
+
+            //'php_page' => Loader::php("welcome"),
+
+            //'template' => "<html><head></head><body><h1>Wow! we did it!</h1></body></html>",
+
+            //'head' => '<head></head>',
+            //'body' => '<body></body>',
+
+            //'on_error' => 'sorry',
+
+            'title' => "hi $name",
+            'name' => $name
+        ]);*/
+
+        //\Luna\ServicesProviders\Cash::save("user","ali");
+        //\Luna\ServicesProviders\Cash::save("color","red");
+
+        echo \Luna\ServicesProviders\Cash::load("user","ali");
+
     }
 
-    public static function file()
+    public static function hi($data = null)
     {
-        echo "<br>";
-        var_dump($_FILES);
-        echo "<br>";
+        var_dump($data);
 
-        $file = FilesProvider::upload('file',false,false);
 
-        $name = $file['file_name'];
-        $type = $file['file_type'];
-        http::redirect("home/download/$name/$type");
     }
 
-    public static function download($url)
-    {
-        //var_dump($url);
-        FilesProvider::download(UPLOAD_PATH . $url[0],null,$url[1] . '/' . $url[2]);
-    }
 }

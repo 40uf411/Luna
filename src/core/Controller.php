@@ -3,9 +3,15 @@
 namespace Luna\core;
 
 use Luna\Helpers\Loader;
+use Luna\Core\View;
 
 abstract class Controller
 {
+
+    public static function init()
+    {
+
+    }
 
     /**
      * @param null $pram
@@ -24,20 +30,15 @@ abstract class Controller
     protected function model($model, $pram = null)
     {
         Loader::model($model);
-
-        //return new $model($pram);
-
     }
 
     /**
-     * @param $view
      * @param  $data
      *
      *  function to load a view
      */
-    protected function view($view, $data = [])
+    protected function view($data = [])
     {
-        require_once VIEW_PATH . $view . ".view.php";
+            View::launch($data);
     }
-
 }

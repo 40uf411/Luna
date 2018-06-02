@@ -2,160 +2,186 @@
 
 namespace Luna\Core;
 
-use Luna\Providers\RouteProvider ;
-use Luna\Providers\HttpProvider ;
-use Luna\Providers\SessionProvider ;
-use Luna\Providers\CookiesProvider ;
-use Luna\Providers\DatabaseProvider ;
 use Luna\Helpers\Loader;
-use Luna\Providers\Log ;
+use Luna\Service\Routing\simple\Router as SimpleRouter;
+use Luna\ServiceProvider\Cookies;
+use Luna\ServiceProvider\Files;
+use Luna\ServiceProvider\Logger;
+use Luna\ServiceProvider\Sessions;
+use Luna\services\Routing\advanced\Router as Router;
 
 
 class App
 {
-    public $controller = "Home" ;
 
-    protected $method = "index" ;
-
-    protected $param = [] ;
+    /*
+     |--------------------------------------
+     |
+     |      # Luna Constructor #
+     |
+     |--------------------------------------
+     |
+     |  Here's where everything starts,
+     |
+     |  Rout dispatching, setting constants,
+     |
+     |  including all the classes, libraries...
+     |
+     */
 
     public function __construct()
     {
         ob_start();
 
+        define("REQUEST_LAUNCH_TIME", time() );
+
+        $this->set_con();
+
         $this->init();
 
-        $url = $this->parseUrl();
+        ini_set('date.timezone', APP_TIMEZONE);
 
-        $this->dispatch($url);
+        ini_set('sendmail_from', APP_DEFAULT_EMAIL);
+
+        ini_set('smtp_port', APP_DEFAULT_STMP_PORT);
+
+        if (APP_ENV === "offline")
+        {
+            Loader::html("offline-app");
+        }
+        else
+        {
+            $url = isset($_GET['url'])? $_GET['url']: null;
+
+            if (ROUTING_SYS === "simple")
+
+                SimpleRouter::url_match( $url, $_SERVER['REQUEST_METHOD']);
+
+            elseif (ROUTING_SYS === "advanced")
+
+                Router::url_match($url, $_SERVER['REQUEST_METHOD']);
+
+            else
+
+                echo "System routing configurations error! ";
+        }
 
         ob_end_flush();
+
+        die();
     }
 
+    /*
+     |--------------------------------------
+     |
+     |     # The framework assembler #
+     |
+     |--------------------------------------
+     |
+     |  The job of this function is to
+     |
+     |  include all the needed classes, libs...
+     |
+     */
 
-    private function init(){
-
+    private function init()
+    {
         // Loading the web configurations loader and the log
 
-        require_once "..\config\dir.config.php";
+        require_once "../src/helpers/Loader.php";
 
-        require_once "..\src\helpers\Loader.php";
+        Loader::config("core/php");
 
-        //Loader::config("php");
+        // Loading the basic abstract classes
 
-        // Loading the Log provider
+        Loader::folder("abstracts", require_once "../src/config/abst.php");
 
-        Loader::provider('log');
+        // Loading the services
 
-        Loader::config('log');
+        Loader::folder("providers", require_once "../src/config/sp.php");
 
+        Loader::folder("validators", ['inputs validator' => 'input']);
 
-        // Loading the routing provider and its configurations
+        // Loading the configurations files
 
-        Loader::provider("route");
+        Loader::config('core'. DS .'routes');
 
-        RouteProvider::init();
+        //
 
-        Loader::config("routes");
+        Loader::helper("Converter");
 
+        // initialization of sessions
 
-        // Loading the database provider and its configuration
+        Sessions::init(true);
 
-        Loader::provider("Database");
+        Cookies::config();
 
-        Loader::config("database");
+        Logger::config();
 
-
-        // Loading the Http provider
-
-        Loader::provider("Http");
-
-
-        //  Loading the session provider and its configuration
-
-        Loader::provider('session');
-
-        SessionProvider::init(false);
+        Files::config();
 
 
-        // Loading the cookies provider and its configuration
+        // Loading all the packages
 
-        Loader::provider("cookies");
+        Loader::vendor();
 
-        Loader::config("cookies");
+        // Loading the build in libraries
 
-
-        // Loading the cookies provider and its configuration
-
-        Loader::provider("files");
-
-        Loader::config("files");
-
-
-        // Loading the Controller and Model abstract classes
-
-        require_once "Controller.php";
-
-        require_once "Model.php";
+        Loader::lib();
     }
 
 
-    private function parseUrl(){
+    /*
+     |--------------------------------------
+     |
+     |      # Constant machine #
+     |
+     |--------------------------------------
+     |
+     |  this part is the responsible of making
+     |
+     |  all the basic framework constants,
+     |
+     |  and including the others that are in an
+     |
+     |  external file.
+     |
+     */
 
-        if(isset($_GET['url'])){
-
-            return $url = explode('/' ,  filter_var( rtrim($_GET['url'] , '/') , FILTER_SANITIZE_URL) );
-
-        }
-    }
-
-    private function dispatch($url)
+    private function set_con()
     {
 
-        if (!isset($url[0]) ||  $url[0] == "" )
+        require_once "../src/config/dir.config.php";
 
-            $contr = "home";
+        $datas = require_once CONFIG_PATH . "core". DS ."web.config.php";
 
-        elseif ( RouteProvider::is_Root($url[0], $_SERVER['REQUEST_METHOD']) )
+        foreach ($datas as $data => $value)
 
-            $contr = routeProvider::get_controller($url[0], $_SERVER['REQUEST_METHOD']) ;
+            define($data, $value);
 
-        else
+        // logging levels
 
-            $contr = "notFound";
+        define('EMERGENCY_LEVEL', 0 );
+        define('ERROR_LEVEL', 1 );
+        define('CRITICAL_LEVEL', 2 );
+        define('ALERT_LEVEL', 3 );
+        define('WARING_LEVEL', 4 );
+        define('NOTICE_LEVEL', 5 );
+        define('INFO_LEVEL', 6 );
+        define('DEBUG_LEVEL', 7 );
 
+        // status constants
 
-        if ($contr == "notFound")
-        {
-            echo "not found";
+        define('SUCCESS', uniqid(APP_DEFAULT_PREFIX));
+        define('FAILURE', uniqid(APP_DEFAULT_PREFIX));
 
-            die();
-        }
+        define('ON', uniqid(APP_DEFAULT_PREFIX));
+        define('OFF', uniqid(APP_DEFAULT_PREFIX));
 
-        else
-        {
-            Loader::controller($contr);
+        define('ACTIVE', uniqid(APP_DEFAULT_PREFIX));
+        define('NOT_ACTIVE', uniqid(APP_DEFAULT_PREFIX));
 
-            $contr =  $contr . "Controller";
-
-            $this->controller = new $contr;
-
-            unset($url[0]);
-        }
-
-        if(isset($url[1]) && method_exists($this->controller , $url[1]))
-        {
-            $this->method = $url[1];
-
-            unset($url[1]);
-        }
-        else
-        {
-            $this->method = 'index';
-        }
-
-        $this->param = $url ? array_values($url) : [];
-
-        call_user_func([$this->controller , $this->method] , $this->param);
     }
+
+
 }

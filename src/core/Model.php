@@ -2,7 +2,7 @@
 
 namespace Luna\core;
 
-use Luna\Providers\DatabaseProvider;
+use Luna\ServiceProvider\Databases;
 
 abstract class Model
 {
@@ -14,7 +14,7 @@ abstract class Model
 
     public function __construct(){
 
-        $this->db = new databaseProvider();
+        $this->db = new Databases();
 
         /*
                 $this->table = $GLOBALS['config']['prefix'] . $table;
