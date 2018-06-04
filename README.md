@@ -82,7 +82,7 @@
 ```
 * Parameters 
 ```php
-    Router->get('example/:id', function($data) {
+    Router->get('example/$id', function($data) {
         View::launch([
             'classname' => "welcome",
             'id' => $data['id']
@@ -101,33 +101,4 @@
     * `protected function model($model, $pram = null)` => to include a model it returns a new instance of the model.
     * `protected function view($data = [])` => load a view.
     * `public function index($pram = null)` => the default controller method.
-
-## Models
-* Default Methods
-    * ``Model->all();`` returns all records of the model as an array of objects
-    * ``Model->where($fields = [], $conditions = [], $values = []);`` returns records of the model with conditions
-        > Ex) ``$user = userModel->where(['id' ,'email'], ['>', '='], [3, 'lee5250@fredonia.edu']);`` returns an array of objects where id > 3 **and** email = 'lee5250@fredonia.edu'
-* ```php
-    protected $hidden = [];
-  ```
-    * Default is an empty array, specify properties you **don't want** to return by using default methods of models
-
-* Creating New Models
-    * Create your own models by making new files in ``app/models`` directory
-    * Each model needs to extend ``Model`` class
-
-## View
-* Accepts data through ``$data`` array
-* ```php
-    <?php include APPROOT.'dynamic'; ?>
-
-        // Your Content Goes Here
-
-    <?php include APPROOT.'dynamic'; ?>
-    ```
-
-## Database
-* Used in your model as a property ``$this->db``
-* Details are included in ``app/libraries/Database.php``
-
-### Other details are included in each class files. Please contact <lee5250@fredonia.edu> for quetions/concerns
+...
