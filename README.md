@@ -102,3 +102,5 @@
     * `protected function view($data = [])` => load a view.
     * `public function index($pram = null)` => the default controller method.
 ...
+
+#more details will be added soon!
