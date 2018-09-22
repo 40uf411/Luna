@@ -3,21 +3,20 @@
 /**
  * *******************************************************
  * *                                                     *
- * *    Luna V1;                                         *
+ * *    Luna V2;                                         *
  * *                                                     *
- * *   Launch day April 14th 2018                        *
+ * *   Launch day                                        *
  * *                                                     *
  * *******************************************************
  */
 
 namespace Luna ;
 
-use Luna\Core\App as app;
+use Luna\Core\Luna;
 
-require_once '../src/core/App.php';
+require_once '../src/core/Luna.php';
 
-$app = new App;
+$app = new Luna();
 
-
-
+$app->launch();
 

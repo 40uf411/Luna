@@ -6,9 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'Mimey\\' => array($vendorDir . '/ralouphie/mimey/src'),
-    'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
+    'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
-    'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

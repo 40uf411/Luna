@@ -1,0 +1,3 @@
+$a->delete()->from("users")->where(["id" => "= 2", "name" => "= 'ali'"])->exec(),
+$a->insert(["id" => 2, "name" => "ali"])->inTo("users")->exec(),
+$a->update('users')->set(["name" => "ali"])->where(["id" => "= 2"])->exec()

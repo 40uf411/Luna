@@ -2,7 +2,7 @@ Options -Multiviews
 
 RewriteEngine on
 
-RewriteBase /new/public
+RewriteBase /luna/public
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

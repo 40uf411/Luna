@@ -1,26 +1,10 @@
 <?php
 
-namespace Luna\core;
+namespace Luna\Core;
 
-use Luna\ServiceProvider\Databases;
+//use Luna\lib\Andromeda\Model as AM;
 
-abstract class Model
+class Model// extends AM
 {
-    protected $db; //database connection object
-
-    protected $table; //table name
-
-    protected $fields = array();  //fields list
-
-    public function __construct(){
-
-        $this->db = new Databases();
-
-        /*
-                $this->table = $GLOBALS['config']['prefix'] . $table;
-
-                $this->getFields();
-            */
-    }
 
 }

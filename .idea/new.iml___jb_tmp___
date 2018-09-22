@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager">
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/common" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/dbal" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/event-manager" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/persistence" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/reflection" />
+          <root url="file://$MODULE_DIR$/vendor/filp/whoops" />
+          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
+          <root url="file://$MODULE_DIR$/vendor/js-phpize/js-phpize" />
+          <root url="file://$MODULE_DIR$/vendor/js-phpize/js-phpize-phug" />
+          <root url="file://$MODULE_DIR$/vendor/js-transformer/js-transformer" />
+          <root url="file://$MODULE_DIR$/vendor/kevinlebrun/colors.php" />
+          <root url="file://$MODULE_DIR$/vendor/league/plates" />
+          <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
+          <root url="file://$MODULE_DIR$/vendor/nategood/commando" />
+          <root url="file://$MODULE_DIR$/vendor/nodejs-php-fallback/nodejs-php-fallback" />
+          <root url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
+          <root url="file://$MODULE_DIR$/vendor/phar-io/version" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
+          <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
+          <root url="file://$MODULE_DIR$/vendor/phug/ast" />
+          <root url="file://$MODULE_DIR$/vendor/phug/compiler" />
+          <root url="file://$MODULE_DIR$/vendor/phug/dependency-injection" />
+          <root url="file://$MODULE_DIR$/vendor/phug/event" />
+          <root url="file://$MODULE_DIR$/vendor/phug/formatter" />
+          <root url="file://$MODULE_DIR$/vendor/phug/js-transformer-filter" />
+          <root url="file://$MODULE_DIR$/vendor/phug/lexer" />
+          <root url="file://$MODULE_DIR$/vendor/phug/parser" />
+          <root url="file://$MODULE_DIR$/vendor/phug/phug" />
+          <root url="file://$MODULE_DIR$/vendor/phug/reader" />
+          <root url="file://$MODULE_DIR$/vendor/phug/renderer" />
+          <root url="file://$MODULE_DIR$/vendor/phug/util" />
+          <root url="file://$MODULE_DIR$/vendor/propel/propel" />
+          <root url="file://$MODULE_DIR$/vendor/psr/http-message" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/pug-php/pug" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/object-enumerator" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/object-reflector" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
+          <root url="file://$MODULE_DIR$/vendor/smarty/smarty" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/config" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/console" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/validator" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
+          <root url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
+          <root url="file://$MODULE_DIR$/vendor/twig/twig" />
+          <root url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/cache" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/common" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/dbal" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/event-manager" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/persistence" />
+          <root url="file://$MODULE_DIR$/vendor/doctrine/reflection" />
+          <root url="file://$MODULE_DIR$/vendor/filp/whoops" />
+          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
+          <root url="file://$MODULE_DIR$/vendor/js-phpize/js-phpize" />
+          <root url="file://$MODULE_DIR$/vendor/js-phpize/js-phpize-phug" />
+          <root url="file://$MODULE_DIR$/vendor/js-transformer/js-transformer" />
+          <root url="file://$MODULE_DIR$/vendor/kevinlebrun/colors.php" />
+          <root url="file://$MODULE_DIR$/vendor/league/plates" />
+          <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
+          <root url="file://$MODULE_DIR$/vendor/nategood/commando" />
+          <root url="file://$MODULE_DIR$/vendor/nodejs-php-fallback/nodejs-php-fallback" />
+          <root url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
+          <root url="file://$MODULE_DIR$/vendor/phar-io/version" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
+          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
+          <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
+          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
+          <root url="file://$MODULE_DIR$/vendor/phug/ast" />
+          <root url="file://$MODULE_DIR$/vendor/phug/compiler" />
+          <root url="file://$MODULE_DIR$/vendor/phug/dependency-injection" />
+          <root url="file://$MODULE_DIR$/vendor/phug/event" />
+          <root url="file://$MODULE_DIR$/vendor/phug/formatter" />
+          <root url="file://$MODULE_DIR$/vendor/phug/js-transformer-filter" />
+          <root url="file://$MODULE_DIR$/vendor/phug/lexer" />
+          <root url="file://$MODULE_DIR$/vendor/phug/parser" />
+          <root url="file://$MODULE_DIR$/vendor/phug/phug" />
+          <root url="file://$MODULE_DIR$/vendor/phug/reader" />
+          <root url="file://$MODULE_DIR$/vendor/phug/renderer" />
+          <root url="file://$MODULE_DIR$/vendor/phug/util" />
+          <root url="file://$MODULE_DIR$/vendor/propel/propel" />
+          <root url="file://$MODULE_DIR$/vendor/psr/http-message" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/pug-php/pug" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/object-enumerator" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/object-reflector" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
+          <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
+          <root url="file://$MODULE_DIR$/vendor/smarty/smarty" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/config" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/console" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/validator" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
+          <root url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
+          <root url="file://$MODULE_DIR$/vendor/twig/twig" />
+          <root url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHARS">
+        <CLASSES>
+          <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-3.0.3.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phar-io/manifest/tests/_fixture/test.phar/" />
+        </CLASSES>
+        <SOURCES>
+          <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-3.0.3.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/phar-io/manifest/tests/_fixture/test.phar/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

@@ -4,6 +4,12 @@ namespace Luna\Helpers;
 
 class Loader{
 
+    public static function autoload($directory)
+    {
+        spl_autoload_register(function ($class, $directory) {
+            include $directory . $class . ".php";
+        });
+    }
 
     //
 
@@ -12,22 +18,22 @@ class Loader{
 
         switch ($folder)
         {
-            case "abstracts" : $fun = 'abst'; break;
-            case "providers" : $fun = 'provider'; break;
+            case "core" : $fun = 'core'; break;
+            case "services" : $fun = 'service'; break;
             case "configs" : $fun = 'config'; break;
-            case "validators" : $fun = 'validator'; break;
         }
         if (isset($fun))
         {
             foreach ($files as $file => $key)
             {
-                self::$fun($key);
+                self::$fun($file);
             }
         }
         else
 
             return FAILURE;
 
+        return $files;
     }
 
     // Loading all the packages
@@ -51,25 +57,25 @@ class Loader{
 
     public static function helper($helper)
     {
-        require_once HELPER_PATH . $helper . ".php";
+        require_once HELPERS_PATH . $helper . ".php";
 
     }
 
 
     // loader abstract class. Naming conversion is *Provider.php;
 
-    public static function abst($abstract)
+    public static function core($class)
     {
-        require_once CORE_PATH . $abstract . ".php";
+        require_once CORE_PATH . $class . ".php";
 
     }
 
 
     // loader provider class. Naming conversion is *Provider.php;
 
-    public static function provider($provider)
+    public static function service($service)
     {
-        require_once SERVICES_PROVIDERS_PATH . $provider . "ServiceProvider.php";
+        require_once SERVICES_PATH . $service . ".php";
 
     }
 
@@ -78,7 +84,7 @@ class Loader{
 
     public static function controller($controller)
     {
-        require_once CONTROLLER_PATH . $controller . "Controller.php";
+        require_once CONTROLLERS_PATH . $controller . "Controller.php";
 
     }
 
@@ -87,10 +93,17 @@ class Loader{
 
     public static function model($model)
     {
-        require_once MODEL_PATH . $model . "Model.php";
+        require_once MODELS_PATH . $model . "Model.php";
 
     }
 
+    // loader model class. Naming conversion is *Model.php;
+
+    public static function middleware($middleware)
+    {
+        require_once MIDDLEWARE_PATH . $middleware . "Middleware.php";
+
+    }
 
     // loader configuration file. Naming conversion is *.config.php;
 
@@ -104,7 +117,7 @@ class Loader{
 
     public static function view($view)
     {
-        require_once VIEW_PATH . $view . "View.php";
+        require_once VIEWS_PATH . $view . "View.php";
 
     }
 
@@ -208,12 +221,4 @@ class Loader{
 
     }
 
-
-    // loader database class. Naming conversion is *.php;
-
-    public static function database($db)
-    {
-        echo DB_PATH . $db . ".php" ;
-
-    }
 }

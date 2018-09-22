@@ -1,9 +1,9 @@
 <?php
 
-namespace Luna\core;
+namespace Luna\Core;
 
 
-abstract class Validator
+class Validator
 {
 
 }
