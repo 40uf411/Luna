@@ -28,6 +28,20 @@ return [
      |
      */
 
+    'APP_DEFAULT_USERNAME' => 'root',
+
+    /*
+     |----------------------------
+     |
+     |      Application default email
+     |
+     |----------------------------
+     |
+     |
+     |
+     |
+     */
+
     'APP_DEFAULT_EMAIL' => 'ali@ali.com',
 
     /*
@@ -142,7 +156,6 @@ return [
 
     'APP_ENV' => 'debug', // production , debug , offline
 
-
     /*
      |------------------------------
      |
@@ -157,7 +170,6 @@ return [
 
     'APP_LOG_LEVEL'=> 'debug', // 'debug', 'info', 'notice', 'warning','error', 'critical', 'alert', 'emergency',
 
-
     /*
      |-------------------------------
      |
@@ -171,7 +183,6 @@ return [
      */
 
     'APP_KEY' => '15s7x86q',
-
 
     /*
      |-------------------------------
@@ -213,21 +224,6 @@ return [
      |
      */
 
-    'APP_TIMEZONE' => 'Africa/Algiers',
-
-    /*
-     |--------------------------------
-     |
-     |      Default routing system
-     |
-     |--------------------------------
-     |
-     |
-     |
-     |
-     */
-
-    'ROUTING_SYS' => 'advanced', // simple or advanced
-
+    'APP_TIMEZONE' => 'Africa/Algiers'
 
 ];

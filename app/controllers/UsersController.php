@@ -9,9 +9,15 @@ use Luna\Services\{
     Schedule\Task,
     Storage
 };
+use Luna\lib\Whirlpool\Memorise;
 
 class UsersController extends Controller
 {
+
+    public function __invoke()
+    {
+        echo "hello world!";
+    }
 
     public function login($data,Request $request,Response $response)
     {
@@ -20,12 +26,17 @@ class UsersController extends Controller
         dump($s);
     }
 
+    /**
+     * @throws Error
+     */
     public function upload()
     {
-        dump([
-            "ali" => "ali",
-            01=> 15
-        ]);
+        dump(
+            Memorise::key("name")
+        );
+
+
+        Memorise::key("name")->as("zinou")->forget_if_exist();
     }
 }
 

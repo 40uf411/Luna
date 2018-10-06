@@ -46,6 +46,22 @@ abstract class Command
     }
 
     /**
+     * @param $parameters
+     * @param $passedParameters
+     * @return bool|mixed
+     * @throws \Error
+     */
+    public final function requiredArgs($parameters, $passedParameters)
+    {
+        if( hasKeys($passedParameters, $parameters) )
+            return true;
+        else
+            error("few arguments passed.");
+
+        return false;
+    }
+
+    /**
      * @param $option
      * @return bool
      */
@@ -80,13 +96,18 @@ abstract class Command
     protected final function getOptGuide()
     {
         $p = new Printer();
-        $s = $p->render(NL . "Options:",["bg_white","blue"]) . NL;
+        $t = new Table(["name", "short", "long", "description"]);
+        $t->setChar("col", "");
+        $t->setChar("line", "");
+
+        $s = $p->render(NL . " Options:",["blue"]);
 
         foreach ($this->options as $option => $value)
         {
-            $s .= $p->render("  " . $option . "\t\t" . "-" . $value['short'] . "  " . "-" . $value['long'] . "\t" . $value['description']) . NL;
+            $t->insert(["name" => $option, "short" => "-" . $value['short'], "long" => "--" . $value['long'], "description" => $value['description']]);
         }
 
-        return $s;
+
+        return $s . $t->render();
     }
 }

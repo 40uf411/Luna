@@ -24,17 +24,22 @@ class Session extends Service
 
         self::$config = $info;
 
-        if ( isset(self::$config['DEFAULT_SESSION_NAME']) )
+        if (!is_cli())
         {
-            session_name ( self::$config['DEFAULT_SESSION_NAME'] ) ;
+            if ( isset(self::$config['DEFAULT_SESSION_NAME']) )
+            {
+                session_name ( self::$config['DEFAULT_SESSION_NAME'] ) ;
+            }
+
+            session_save_path(SESSIONS_PATH );
+
+            if ( session_status() === PHP_SESSION_NONE )
+            {
+                session_start () ;
+            }
+
         }
 
-        session_save_path(SESSIONS_PATH );
-
-        if ( session_status() === PHP_SESSION_NONE )
-        {
-            session_start () ;
-        }
     }
 
     public static function has($key)
@@ -97,7 +102,6 @@ class Session extends Service
             session_destroy();
         }
     }
-
 
     public function __toString() :? string
     {

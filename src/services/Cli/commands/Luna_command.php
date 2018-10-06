@@ -3,8 +3,10 @@
 namespace Luna\services\Cli\commands;
 
 
-use Luna\services\Cli\Command;
-use Luna\services\Cli\Printer;
+use Luna\services\Cli\{
+    Auth, command, Progress, Printer, Table
+};
+use Luna\services\Console;
 
 class Luna_command extends Command
 {
@@ -25,10 +27,19 @@ class Luna_command extends Command
     {
         $p = new Printer();
 
-        $s = NL . $p->render("welcome to Luna.",["bg_white", "blue"], true) . NL . NL;
+        $s = NL . " " . $p->render(" welcome to Luna. ",["bg_white", "blue"]) . NL ;
         $s .= $this->getOptGuide();
 
-        return $s;
+        $s .= $p->render(NL . " Valid commands:",["blue"]);
+        $t = new Table(["command", "description"]);
+        $t->setChar("col", "");
+        $t->setChar("line", "");
+
+        foreach (Console::getCommands() as $command => $value)
+        {
+            $t->insert(["command" => $command, "description" => (isset($value['description']))? $value['description'] : ""]);
+        }
+        return $s . $t->render();
     }
 
     public  function __invoke($args = null)
@@ -49,13 +60,14 @@ class Luna_command extends Command
             dump($args);
         }
     }
+
+    /**
+     * @param $function
+     * @param $args
+     * @throws \Error
+     */
     public  function __call($function, $args)
     {
-        echo "opt:";
-        dump($this->set_options);
-
-        echo "function " . $function . NL;
-        echo "args:";
-        dump($args);
+        //(new Auth())->login();
     }
 }

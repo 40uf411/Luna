@@ -105,6 +105,12 @@ class Time
 
         return $this;
     }
+
+    public function newtWeek()
+    {
+        return $this->addDays(7);
+    }
+
     public function tomorrow()
     {
         $this->day +=1;
@@ -136,6 +142,12 @@ class Time
 
         return $this;
     }
+
+    public function lastWeek()
+    {
+        return $this->subDays(7);
+    }
+
     public function yesterday()
     {
         $this->day -=1;
@@ -233,31 +245,52 @@ class Time
     }
     public function addMonths(?int $month)
     {
-        $this->month += $month;
+        $m = $month % 12;
+        $y = (int) ($month / 12);
+
+        $this->month += $m;
+        $this->addYears($y);
 
         return $this;
     }
     public function addDays(?int $day)
     {
-        $this->day += $day;
+        $d = $day % 30;
+        $m = (int) ($day / 30);
+
+
+        $this->day += $d;
+        $this->addMonths($m);
 
         return $this;
     }
     public function addHours(?int $hour)
     {
-        $this->hour += $hour;
+        $h = $hour % 24;
+        $d = (int) ($hour / 24);
+
+        $this->hour += $h;
+        $this->addDays($d);
 
         return $this;
     }
     public function addMinutes(?int $minute)
     {
-        $this->minute += $minute;
+        $m = $minute % 60;
+        $h = (int) ($minute / 60);
+
+        $this->minute += $m;
+        $this->addHours($h);
 
         return $this;
     }
     public function addSeconds(?int $second)
     {
-        $this->second += $second;
+        $s = $second % 60;
+        $m = (int) ($second / 60);
+
+        $this->second += $s;
+        $this->addMinutes($m);
 
         return $this;
     }

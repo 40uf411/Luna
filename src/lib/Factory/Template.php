@@ -6,5 +6,5 @@ namespace Luna\lib\Factory;
 
 abstract class Template
 {
-    public abstract function make($what, $data = null);
+    public abstract function make($data = null);
 }

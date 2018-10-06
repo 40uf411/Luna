@@ -4,15 +4,16 @@ namespace Luna\lib\Factory\command;
 
 
 use Luna\lib\Factory\Builder;
-use Luna\services\Cli\Command;
+
+use Luna\services\Cli\{
+    Auth, command, Progress, Printer, Table
+};
 
 class Factory extends Command
 {
     public function setup()
     {
         parent::setup();
-
-        $this->setOption("detect","force building the object if it already exist.",'d','detect');
         $this->setOption("force","force building the object if it already exist.",'f','force');
     }
 
@@ -20,15 +21,23 @@ class Factory extends Command
     {
         echo $this->help();
     }
+
+    /**
+     * @param $function
+     * @param $args
+     * @throws \Error
+     */
     public  function __call($function, $args)
     {
         $args = $args[0];
+
+        (new Auth())->login();
+
         if ($function == "make")
         {
-            if (isset($args['what']))
-            {
-                Builder::build($args['what'],$args);
-            }
+            $this->requiredArgs(['what','name'],$args);
+
+            Builder::build($args['what'],$args);
         }
         else
         {
@@ -36,9 +45,34 @@ class Factory extends Command
         }
     }
 
+    /**
+     * @throws \Error
+     */
     public  function help()
     {
-        echo "welcome to the factory";
+        $p = new Printer();
+        echo NL . $p->render(" welcome to the factory.",["bg_white", "blue"]) . " " . NL;
         echo $this->getOptGuide();
+
+        echo $p->render(NL . "Functions:",["blue"]);
+        $t = new Table(["name", "description"]);
+        $t->setChar("col", "");
+        $t->setChar("line", "");
+
+        $t->insert(["name" => "make", "description" => "built an object."]);
+
+        echo $t->render();
+
+        echo $p->render(NL . "Products:",["blue"]);
+        $t = new Table(["name", "requirements", "optionals", "folder"]);
+        $t->setChar("col", "");
+        $t->setChar("line", "");
+
+        $t->insert(["name" => "Controllers", "requirements" => "name", "folder" => CONTROLLERS_PATH]);
+        $t->insert(["name" => "Commands", "requirements" => "name", "folder" => APP_PATH  . "commands" . DS]);
+
+        echo $t->render();
+
+
     }
 }

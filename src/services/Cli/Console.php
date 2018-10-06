@@ -23,6 +23,9 @@ class Console extends Service
         require_once "Printer.php";
         require_once "Scanner.php";
         require_once "Command.php";
+        require_once "Progress.php";
+        require_once __DIR__ . DS ."Table.php";
+        require_once "Auth.php";
     }
 
     public static function config($info = null)
@@ -186,6 +189,11 @@ class Console extends Service
             "command" => $command,
             "parameters" => $parameters
         ];
+    }
+
+    public static function getCommands()
+    {
+        return self::$commands;
     }
 
     // non needed function

@@ -40,6 +40,18 @@ function _dir($path, $dirname, $erase)
     return new Luna\services\Storage\Dir($path, $dirname, $erase);
 }
 
+/**
+ * @param string $string
+ * @param array $theme
+ * @param bool $center
+ * @param int $width
+ * @throws Error
+ */
+function printCli($string = "", $theme = [], bool $center  = false, int $width = 80)
+{
+    (new \Luna\services\Cli\Printer())->print($string,$theme,$center,$width);
+}
+
 # casting
 
 function arrayToString(array $array, $form = ' $k = $v ')
