@@ -28,31 +28,28 @@ class MYSQL_AD extends AndromedaDriver
         }
         catch (PDOException $e)
         {
-            ob_clean();
-            ?>
-            <div style="background: #fff;padding: 20px; font-size: 3em; position: absolute; left: 50%; transform: translate(-50%,0); top: 5%; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,Arial,sans-serif; ">
-                <b>Oops! </b> Failed to connect to databese </br>
-                <div style="font-size:.5em;margin-top:30px">'
-                    <?php echo $e->getMessage() ?> ';
+            if (!is_cli())
+            {
+                ob_clean();
+                ?>
+                <div style="background: #fff;padding: 20px; font-size: 3em; position: absolute; left: 50%; transform: translate(-50%,0); top: 5%; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,Arial,sans-serif; ">
+                    <b>Oops! </b> Failed to connect to database </br>
+                    <div style="font-size:.5em;margin-top:30px">'
+                        <?php echo $e->getMessage() ?> ';
+                    </div>
                 </div>
-            </div>
-            <?php
+                <?php
+
+            }
+            else
+            {
+                echo "Oops! Failed to connect to database." . NL . $e->getMessage();
+            }
             die();
         }
 
         return $this;
     }
-/*
-    private function setChar($charest){
-
-        $sql = 'set names '.$charest;
-
-        $this->query($sql);
-
-    }
-
-
-*/
 
     /**
      * @param $sql
@@ -118,109 +115,6 @@ class MYSQL_AD extends AndromedaDriver
         return $this->query($str);
     }
 
-    /**
-     * @param string $select
-     * @return $this
-     * @throws Exception
-     */
-    public function select($select = "*")
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query['select'] = $select;
-
-        return $this;
-    }
-
-    /**
-     * @param $table
-     * @return $this
-     * @throws Exception
-     */
-    public function from($table)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $table = (is_array($table)) ? $table : [$table];
-
-        $this->query["tables"] = array_merge($this->query["tables"], $table) ;
-
-        return $this;
-    }
-
-    /**
-     * @param array $where
-     * @return $this
-     * @throws Exception
-     */
-    public function where(array $where)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query["where"] = array_merge($this->query["where"], $where) ;
-
-        return $this;
-    }
-
-    /**
-     * @param array $with
-     * @return $this
-     * @throws Exception
-     */
-    public function with(array $with)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query["where"] = array_merge($this->query["where"], $with);
-
-        return $this;
-    }
-
-    /**
-     * @param $key
-     * @return $this
-     * @throws Exception
-     */
-    public function orderBy($key)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query["order"] = $key ;
-
-        return $this;
-    }
-
-    /**
-     * @param $key
-     * @return $this
-     * @throws Exception
-     */
-    public function groupBy($key)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query["group"] = $key ;
-
-        return $this;
-    }
 
     private function treat_query()
     {
@@ -382,67 +276,6 @@ class MYSQL_AD extends AndromedaDriver
         return count($this->fetchAll());
     }
 
-    /**
-     * @param $name
-     * @param null $record
-     * @return $this
-     * @throws Exception
-     */
-    public function insert($name,$record = null)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query['action'] = "insert";
-
-        if (isset($record))
-        {
-            $this->query['tmp_name'] = $name;
-
-            $name = $record;
-        }
-
-        $this->query['tmp_data'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * @param $table
-     * @return $this
-     * @throws Exception
-     */
-    public function inTo($table)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $table = (is_array($table)) ? $table : [$table];
-
-        $this->query["tables"] = array_merge($this->query["tables"], $table) ;
-
-        return $this;
-    }
-
-    /**
-     * @return $this|mixed
-     * @throws Exception
-     */
-    public function delete()
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connect before you make a request");
-        }
-
-        $this->query['action'] = "delete";
-
-        return $this;
-    }
 
     public function update($table)
     {

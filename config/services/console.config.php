@@ -12,8 +12,8 @@ return [
 
     'commands' => [
         "luna" => [
-            "namespace" => '\Luna\services\Cli\commands\Luna_command',
-            "location" => SERVICES_PATH . "cli" . DS . "commands" . DS . "Luna_command.php",
+            "namespace" => '\Luna\services\Cli\commands\LunaCommand',
+            "location" => SERVICES_PATH . "Cli" . DS . "commands" . DS . "LunaCommand.php",
             "description" => "Luna default command."
         ],
         'factory' => [

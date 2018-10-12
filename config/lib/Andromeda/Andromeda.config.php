@@ -11,7 +11,7 @@ return [
 
         "MYSQL" => [
             "host" => "localhost",
-            "name" => "tye",
+            "name" => "test",
             "user" => "root",
             "pass" => "",
             'charset' => 'utf8',

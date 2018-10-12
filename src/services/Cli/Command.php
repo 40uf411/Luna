@@ -2,7 +2,6 @@
 
 namespace Luna\services\Cli;
 
-
 abstract class Command
 {
     protected $options = [];
@@ -10,8 +9,7 @@ abstract class Command
     protected $set_options;
 
     public function __construct()
-    {
-        
+    {   
     }
 
     public abstract function __invoke($arg = null);
@@ -61,11 +59,34 @@ abstract class Command
         return false;
     }
 
+
+    public final function opt($option)
+    {
+        if( $this->hasOpt($option) )
+        {
+            $short = $this->options[$option]["short"];
+            $long = $this->options[$option]["long"];
+
+            if( isset($short) && isset($this->set_options[$short]) )
+            {
+                return $this->set_options[$short];
+            }
+            elseif ( isset($long) && isset($this->set_options[$long]) )
+            {
+                return $this->set_options[$long];
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      * @param $option
      * @return bool
      */
-    public final function opt($option)
+    public final function isOpt($option)
     {
         foreach ($this->options as $opt)
         {
@@ -84,10 +105,24 @@ abstract class Command
 
         foreach ($options as $option => $item)
         {
-            if ($this->opt($option))
+            if ($this->isOpt($option))
                 $a[$option] = $item;
         }
         $this->set_options =  $a;
+    }
+
+    public final function hasOpt( $option )
+    {
+        if( isset($this->options[$option]) )
+        {
+            $short = $this->options[$option]["short"];
+            $long = $this->options[$option]["long"];
+
+            return ( $this->checkOpt($short) || $this->checkOpt($long) );
+        }
+        else
+            return false;
+        
     }
 
     /**
@@ -100,7 +135,7 @@ abstract class Command
         $t->setChar("col", "");
         $t->setChar("line", "");
 
-        $s = $p->render(NL . " Options:",["blue"]);
+        $s = $p->render(NL . " Options:",["blue", "bold"]);
 
         foreach ($this->options as $option => $value)
         {

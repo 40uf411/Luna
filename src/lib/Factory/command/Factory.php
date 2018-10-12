@@ -51,10 +51,10 @@ class Factory extends Command
     public  function help()
     {
         $p = new Printer();
-        echo NL . $p->render(" welcome to the factory.",["bg_white", "blue"]) . " " . NL;
+        echo NL . " " .  $p->render(" welcome to the factory ",["bg_white", "blue", "bold"]) . " " . NL;
         echo $this->getOptGuide();
 
-        echo $p->render(NL . "Functions:",["blue"]);
+        echo NL . " " . $p->render( "Functions:",["blue", "bold"]);
         $t = new Table(["name", "description"]);
         $t->setChar("col", "");
         $t->setChar("line", "");
@@ -63,7 +63,7 @@ class Factory extends Command
 
         echo $t->render();
 
-        echo $p->render(NL . "Products:",["blue"]);
+        echo NL . " " . $p->render( "Products:",["blue", "bold"]);
         $t = new Table(["name", "requirements", "optionals", "folder"]);
         $t->setChar("col", "");
         $t->setChar("line", "");

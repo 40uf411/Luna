@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ali25
- * Date: 10/2/2018
- * Time: 5:02 PM
- */
 
 namespace Luna\services\Timer\command;
 
@@ -15,14 +9,12 @@ class time extends Command
 {
     public  function __call($function, $args)
     {
-        echo " " . date("H : I : S");
+        echo " " . date("H : I : s") . NL;
     }
 
     public  function __invoke($arg = null)
     {
-        echo " " . date("H : i : s");
+        echo " " . date("H : i : s") . NL;
     }
-
     public  function help(){}
-
 }

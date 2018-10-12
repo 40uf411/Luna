@@ -9,12 +9,12 @@ class date extends Command
 {
     public  function __call($function, $args)
     {
-        echo " " . date("Y - M - D | H : I : s");
+        echo " " . date("D M d Y") . NL;
     }
 
     public  function __invoke($arg = null)
     {
-        echo " " . date("Y - M - D | H : I : s");
+        echo " " . date("D M d Y") . NL;
     }
 
     public  function help(){}

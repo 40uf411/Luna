@@ -35,7 +35,6 @@ class Console extends Service
         self::$config = $c['configs'];
 
         self::$commands = $c['commands'];
-
     }
 
 
@@ -100,10 +99,11 @@ class Console extends Service
                         $c($parameters);
 
                 }
+                echo NL;
             }
             else
             {
-                $p->print("Unknown command " . $command['class'] . ".");
+                $p->print("Unknown command " . $command['class'] . "." . NL, "bold");
             }
 
         }

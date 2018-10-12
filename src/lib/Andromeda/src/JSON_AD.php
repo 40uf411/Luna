@@ -9,15 +9,14 @@ use Luna\services\Storage\{
 
 class JSON_AD extends AndromedaDriver
 {
-    private $connection = false;
-    private $lock = false;
-    private $db;
     private $tables;
-    private $recordes = [];
+    private $records = [];
 
     # helpers functions
 
     /**
+     * add database to databases list
+     *
      * @param $db
      */
     private function record_db($db)
@@ -32,7 +31,7 @@ class JSON_AD extends AndromedaDriver
     }
 
     /**
-     *
+     * remove a db about from db list
      */
     private function unrecord_db()
     {
@@ -78,15 +77,22 @@ class JSON_AD extends AndromedaDriver
         return $this;
     }
 
-    private function refresh_table($data = null )
+    private function refresh_table($data = null , $tables = null)
     {
-        $tables = is_array($this->query['tables']) ? $this->query['tables'] : [$this->query['tables']];
+        if (empty($tables))
+            $tables = is_array($this->query['tables']) ? $this->query['tables'] : [$this->query['tables']];
 
-        foreach ($tables as $table => $key)
+        elseif ( ! is($tables,'ary'))
+            $tables = [$tables];
+
+        if (is($tables, 'ary'))
         {
-            $d = (new File($this->config['db_location'] . $this->db['name'] . DS . $key . ".json" ));
+            foreach ($tables as $table => $key)
+            {
+                $d = (new File($this->config['db_location'] . $this->db['name'] . DS . $key . ".json" ));
 
-            $d->put(json_encode($data), true);
+                $d->put(json_encode($data), true);
+            }
         }
     }
 
@@ -113,21 +119,29 @@ class JSON_AD extends AndromedaDriver
             {
                 if (array_key_exists($table,$this->tables))
                 {
-                    $this->recordes = array_merge($this->recordes, $this->load_data($table . ".json")) ;
+                    $this->records[$table] = $this->load_data($table . ".json") ;
                 }
             }
-            $t = [];
-
-            foreach ($this->recordes as $key => $record )
+            $r = [];
+            foreach ($this->records as $table => $records )
             {
-                $tm = $this->trait_query($record);
-                if ($tm)
+                foreach ($records as $key => $record)
                 {
-                    $t[$key] = $tm;
-                }
+                    $tm = $this->trait_query($record);
 
+                    if ($tm)
+                    {
+                        $records[$key] = $tm;
+                    }
+                    else
+                    {
+                        unset($records[$key]);
+                    }
+                }
+                $r[$table] = $records;
             }
-            return $t;
+            $this->records = $r;
+            return empty($this->records) ? $this->tables : $this->records;
         }
         else
         {
@@ -149,8 +163,9 @@ class JSON_AD extends AndromedaDriver
 
     /**
      * @param $config
-     * @return $this
+     * @return $this|mixed
      * @throws Error
+     * @throws Exception
      */
     public function connect($config)
     {
@@ -167,7 +182,7 @@ class JSON_AD extends AndromedaDriver
 
         $_db = $data['db_config'];
 
-        if ( $_db['secure'] && ( ($_db['user'] != $config['user']) || ($_db['pass'] != $config['pass']) ) )
+        if ( isset($_db['secure']) && $_db['secure'] && ( ($_db['user'] != $config['user']) || ($_db['pass'] != $config['pass']) ) )
         {
             error("<b>Error!</b> couldn't login database '" . $_db['name'] . "', wrong username or password");
         }
@@ -180,6 +195,8 @@ class JSON_AD extends AndromedaDriver
             $this->tables = $data['tables'];
 
             $this->connection = true;
+
+            $this->pass = (isset($_db['pass']) and ! empty($_db['pass'])) ? $_db['pass'] : "";
         }
         return $this;
     }
@@ -213,6 +230,8 @@ class JSON_AD extends AndromedaDriver
             $this->record_db($db);
 
             $this->connection = true;
+
+            $this->pass = (isset($db['pass']) and ! empty($db['pass'])) ? $db['pass'] : "";
 
             return $this;
         }
@@ -352,145 +371,11 @@ class JSON_AD extends AndromedaDriver
 
         $this->connection = false;
 
-        $this->db = $this->tables = $this->recordes =null;
-    }
-
-    /**
-     * @return $this
-     */
-    public function lock()
-    {
-        $this->lock = true;
-
-        return $this;
-    }
-
-    /**
-     * @param $password
-     * @return $this
-     */
-    public function unlock($password)
-    {
-        if ($this->db['pass'] === $password)
-            $this->lock = false;
-
-        return $this;
+        $this->db = $this->tables = $this->records =null;
     }
 
     # requests functions
 
-    /**
-     * @param $select
-     * @return $this
-     * @throws Exception
-     */
-    public function select($select = "*")
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $this->query["action"] = "select" ;
-        $this->query["select"] = $select ;
-
-        return $this;
-    }
-
-    /**
-     * @param $table
-     * @return $this
-     * @throws Exception
-     */
-    public  function from($table)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $table = (is_array($table)) ? $table : [$table];
-
-        $this->query["tables"] = array_merge($this->query["tables"], $table) ;
-
-        return $this;
-    }
-
-
-    /**
-     * @param $where
-     * @param $condition
-     * @return $this|mixed
-     * @throws Exception
-     */
-    public function where($where, $condition = null)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        if ($condition == null and is($where, "array"))
-            $this->query["where"] = array_merge($this->query["where"], $where) ;
-        elseif ($condition != null)
-            $this->query["where"] = array_merge($this->query["where"], [$where => $condition]) ;
-
-        return $this;
-    }
-
-    /**
-     * @param $where
-     * @param null $condition
-     * @return $this|mixed
-     * @throws Exception
-     */
-    public function with($where, $condition = null)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        if ($condition == null and is($where, "array"))
-            $this->query["where"] = array_merge($this->query["where"], $where) ;
-        elseif ($condition != null)
-            $this->query["where"] = array_merge($this->query["where"], [$where => $condition]) ;
-
-        return $this;
-    }
-
-    /**
-     * @param $key
-     * @return $this
-     * @throws Exception
-     */
-    public function orderBy($key)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-        $this->query["order"][] = $key ;
-
-        return $this;
-    }
-
-    /**
-     * @param $key
-     * @return $this
-     * @throws Exception
-     */
-    public function groupBy($key)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $this->query["group"][] = $key ;
-
-        return $this;
-    }
 
     /**
      *
@@ -668,76 +553,14 @@ class JSON_AD extends AndromedaDriver
 
     # data operations
 
-    /**
-     * @param $record
-     * @return $this
-     * @throws Exception
-     */
-    public function insert($name, $record = null)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $this->query['action'] = "insert";
-
-        if (isset($record))
-        {
-            $this->query['tmp_name'] = $name;
-
-            $name = $record;
-        }
-        else
-            $this->query['tmp_name'] = null;
-        $this->query['tmp_data'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * @param $table
-     * @return $this
-     * @throws Exception
-     */
-    public  function inTo($table)
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $table = (is_array($table)) ? $table : [$table];
-
-        $this->query["tables"] = array_merge($this->query["tables"], $table) ;
-
-        return $this;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function delete()
-    {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
-
-        $this->query['action'] = "delete";
-
-        return $this;
-    }
 
     /**
      * @throws Exception
      */
     public function exec()
     {
-        if (! $this->connection)
-        {
-            exception("error! you need to connection before you make a request");
-        }
+        $this->check_connection();
+
         if ($this->lock)
         {
             exception("error! this connection is locked, you can make selection operations only.");
@@ -745,21 +568,21 @@ class JSON_AD extends AndromedaDriver
 
         if ($this->query['action'] == 'insert')
         {
-            $r = $this->trait_data();
+            $tables = $this->trait_data();
 
-            $r = $r ? $r : [];
+            foreach ($tables as $table => $r)
+            {
+                $r = is($r,"ary") ? $r : [];
 
-            if ( ! (isset($this->query['override']) and $this->query['override']) && isset($r[$this->query['tmp_name']]))
+                if ( ! (isset($this->query['override']) and $this->query['override']) && isset($r[$this->query['tmp_name']]))
 
-                exception("<b>Warning!</b> a record with same key '" . $this->query['tmp_name'] . "' exist in tables ["  . arrayToString($this->query['tables'])  . "] with no override permission");
-                
-            if (isset($this->query['tmp_name']))
+                    exception("<b>Warning!</b> a record with same key '" . $this->query['tmp_name'] . "' exist in tables ["  . arrayToString($this->query['tables'])  . "] with no override permission");
+
                 $r[$this->query['tmp_name']] = $this->query['tmp_data'] ;
 
-            else
-                $r[] = $this->query['tmp_data'] ;
+                $this->refresh_table($r, $table);
 
-            $this->refresh_table($r);
+            }
 
             $this->clear_query();
 
@@ -768,154 +591,165 @@ class JSON_AD extends AndromedaDriver
 
         elseif($this->query['action'] == "delete")
         {
-            $r = $this->trait_data();
+            $tables = $this->trait_data();
 
-            $r = $r ? $r : [];
-
-            $k = [];
-
-            foreach ($r as $key => $array)
+            foreach ($tables as $table => $r)
             {
-                //for each item in the table
+                $r = is($r,"ary") ? $r : [];
 
-                $adm = true;
+                $k = [];
 
-                foreach ($this->query['where'] as $item => $value)
+                foreach ($r as $key => $record)
                 {
-                    if (! $adm)
-                    {
-                        break;
-                    }
+                    //for each item in the table
 
-                    if (array_key_exists($item, $array))
+                    $admit = true;
+
+                    foreach ($this->query['where'] as $item => $value)
                     {
-                        switch ($value[0])
+                        if (! $admit)
                         {
-                            case "equals":
-                                if ($array[$item] == $value[1])
-                                {
-                                    $adm = false;
+                            break;
+                        }
 
-                                    $k[] = $key;
+                        if (array_key_exists($item, $record))
+                        {
+                            switch ($value[0])
+                            {
+                                case "==":
+                                case "equals":
+                                    if ($record[$item] == $value[1])
+                                    {
+                                        $adm = false;
 
+                                        $k[] = $key;
+
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "not equals":
-                                if ($array[$item] != $value[1])
-                                {
-                                    $adm = false;
+                                case "!=":
+                                case "not equals":
+                                    if ($record[$item] != $value[1])
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "bigger than":
-                                if ($array[$item] > $value[1])
-                                {
-                                    $adm = false;
+                                case ">":
+                                case "bigger than":
+                                    if ($record[$item] > $value[1])
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "bigger or equals":
-                                if ($array[$item] >= $value[1])
-                                {
-                                    $adm = false;
+                                case ">=":
+                                case "bigger or equals":
+                                    if ($record[$item] >= $value[1])
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "smaller than":
-                                if ($array[$item] < $value[1])
-                                {
-                                    $adm = false;
+                                case "<":
+                                case "smaller than":
+                                    if ($record[$item] < $value[1])
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "smaller or equals":
-                                if ($array[$item] <= $value[1])
-                                {
-                                    $adm = false;
+                                case "<=":
+                                case "smaller or equals":
+                                    if ($record[$item] <= $value[1])
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "between":
-                                if ( ($array[$item] >= $value[1]) ||  ($array[$item] < $value[2]) )
-                                {
-                                    $adm = false;
+                                case "><":
+                                case "btn":
+                                case "between":
+                                    if ( ($record[$item] >= $value[1]) ||  ($record[$item] < $value[2]) )
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "in":
-                                if ( in_array($array[$item], $value[1]))
-                                {
-                                    $adm = false;
+                                case "in":
+                                    if ( in_array($record[$item], $value[1]))
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
-                            case "not in":
-                                if ( ! in_array($array[$item], $value[1]))
-                                {
-                                    $adm = false;
+                                case "!in":
+                                case "not in":
+                                    if ( ! in_array($record[$item], $value[1]))
+                                    {
+                                        $adm = false;
 
-                                    $k[] = $key;
+                                        $k[] = $key;
 
+                                        break;
+                                    }
                                     break;
-                                }
-                                break;
 
+                            }
+                        }
+
+                    }// end conditions loop
+
+                }// end records loop
+
+                $r = $this->trait_data();
+
+                foreach ($r as $key => $item)
+                {
+                    if ( in_array($key, $k))
+                    {
+                        if (isset($r[$key]))
+                        {
+                            unset($r[$key]);
                         }
                     }
-
-                }// end conditions loop
-
-            }// end records loop
-
-            $r = $this->trait_data();
-
-            foreach ($r as $key => $item)
-            {
-                if ( in_array($key, $k))
-                {
-                    if (isset($r[$key]))
-                    {
-                        unset($r[$key]);
-                    }
                 }
+
+                $this->refresh_table($r,$table);
+
+                $this->clear_query();
+
+                return true;
             }
-
-            $this->refresh_table($r);
-
-            $this->clear_query();
-
-            return true;
-
         } // end delete segment
     }
 
@@ -933,10 +767,10 @@ class JSON_AD extends AndromedaDriver
     }
 
     /**
-     * @param array|null $array
-     * @return array
+     * @param array|null $record
+     * @return array|null
      */
-    private function trait_query(array $array = null)
+    private function trait_query(array $record = null)
     {
         $adm = true;
 
@@ -949,90 +783,118 @@ class JSON_AD extends AndromedaDriver
                     break;
                 }
 
-                if (array_key_exists($item, $array))
+                if (array_key_exists($item, $record))
                 {
                     switch ($value[0])
                     {
+                        case "==":
                         case "equals":
-                            if ($array[$item] != $value[1])
+                            if ($record[$item] != $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case "!=":
                         case "not equals":
-                            if ($array[$item] == $value[1])
+                            if ($record[$item] == $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case ">":
                         case "bigger than":
-                            if ($array[$item] <= $value[1])
+                            if ($record[$item] <= $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case ">=":
                         case "bigger or equals":
-                            if ($array[$item] < $value[1])
+                            if ($record[$item] < $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case "<":
                         case "smaller than":
-                            if ($array[$item] >= $value[1])
+                            if ($record[$item] >= $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case "<=":
                         case "smaller or equals":
-                            if ($array[$item] > $value[1])
+                            if ($record[$item] > $value[1])
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case "><":
+                        case "btn":
                         case "between":
-                            if ( ($array[$item] < $value[1]) ||  ($array[$item] >= $value[2]) )
+                            if ( ! ( ($record[$item] >= $value[1]) ||  ($record[$item] < $value[2]) ) )
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
                         case "in":
-                            if ( ! in_array($array[$item], $value[1]))
+                            if (  ! in_array($record[$item], $value[1]))
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
 
+                        case "!in":
                         case "not in":
-                            if ( in_array($array[$item], $value[1]))
+                            if ( in_array($record[$item], $value[1]))
                             {
                                 $adm = false;
+
+                                $k[$item] = $record[$item];
 
                                 break;
                             }
                             break;
+
                     }
                 }
                 else
@@ -1047,10 +909,10 @@ class JSON_AD extends AndromedaDriver
             {
                 $k = is_array($this->query['select']) ? $this->query['select'] : [ $this->query['select'] ];
 
-                $array = setKeys($k, $array);
+                $array = keys($k, $record);
             }
         }
 
-        return $adm ? $array : null;
+        return $adm ? $record : null;
     }
 }

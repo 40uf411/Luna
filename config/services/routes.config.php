@@ -12,9 +12,18 @@ use Luna\services\Http\{Response, Request};
  *
  ***************************/
 
-Router::home("Users@upload");
+Router::home(function(){
+    $name = (int) "1";
+});
 
-Router::any('/hi/{name/hi',function($data){
+Router::any('/hi/$name', function($data){
+    dump($data);
+})->pattern([
+    "name" => "/[0-9]/"
+]);
+
+/*
+Router::any('/hi/$name',function($data){
    dump($data);
 })->pattern([
     "name" => "/ali|7a9o/"

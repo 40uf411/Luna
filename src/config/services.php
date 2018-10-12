@@ -8,7 +8,7 @@ return [
         "init" => true,
         "init_pram" => true,
         "config" => true,
-        "config_pram" => Loader::config("services\session")
+        "config_pram" => Loader::config("services" . DS . "session")
     ],
 
     Luna\services\ErrorHandler::class => [
@@ -44,7 +44,7 @@ return [
         "init" => true,
         "init_pram" => true,
         "config" => true,
-        "config_pram" => Loader::config("services\cookies")
+        "config_pram" => Loader::config("services" . DS . "cookies")
     ],
 
     Luna\services\DB::class => [
@@ -62,7 +62,7 @@ return [
         "init" => true,
         "init_pram" => true,
         "config" => true,
-        "config_pram" => Loader::config("services\storage")
+        "config_pram" => Loader::config("services" . DS . "storage")
     ],
 
     Luna\services\Log::class => [
@@ -71,7 +71,7 @@ return [
         "init" => true,
         "init_pram" => true,
         "config" => true,
-        "config_pram" => Loader::config("services\log")
+        "config_pram" => Loader::config("services" . DS . "log")
     ],
 
     Luna\services\View::class => [
@@ -80,12 +80,12 @@ return [
         "init" => true,
         "init_pram" => [],
         "config" => true,
-        "config_pram" => Loader::config("services\\view")
+        "config_pram" => Loader::config("services" . DS . "view")
     ],
 
     Luna\services\Crypt::class => [
         "location" => "Crypt" . DS . "Crypt",
-        "cli" => true,
+        "cli" => false,
         "init" => false,
         "init_pram" => true,
         "config" => false,
