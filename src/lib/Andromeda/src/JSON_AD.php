@@ -399,13 +399,9 @@ class JSON_AD extends AndromedaDriver
             exception("error! you need to connection before you make a request");
         }
 
-        $r = $this->trait_data() ;
+        $r = $this->fetchAll($style) ;
 
-        $r = $r ? $r : [];
-
-        $this->clear_query();
-
-        return ( count($r) > 0 ) ? array_values($r)[0] : [];
+        return ( is($r,"ary") and count($r) > 0 ) ? array_values($r)[0] : [];
     }
 
     /**
@@ -419,8 +415,17 @@ class JSON_AD extends AndromedaDriver
             exception("error! you need to connection before you make a request");
         }
 
+
         $r =  $this->trait_data();
 
+        $tm = [];
+
+        foreach ($r as $item)
+        {
+            $tm = array_merge($tm,$item);
+        }
+
+        $r = $tm;
         $this->clear_query();
 
         return $r ? $r : [];
@@ -440,15 +445,9 @@ class JSON_AD extends AndromedaDriver
 
         $classname = $classname ? $classname : "stdClass";
 
-        $r = $this->trait_data();
+        $r = $this->fetch();
 
-        $r = $r ? $r : [];
-
-        $r =  ( count($r) > 0 ) ? array_values($r)[0] : [];
-
-        $r = arrayToObject($r,$classname);
-
-        $this->clear_query();
+        $r = (is($r, "ary"))? arrayToObject($r,$classname) : arrayToObject([],$classname);
 
         return $r;
     }
@@ -467,9 +466,9 @@ class JSON_AD extends AndromedaDriver
 
         $classname = $classname ? $classname : "stdClass";
 
-        $r = $this->trait_data();
+        $r = $this->fetchAll();
 
-        $r = $r ? $r : [];
+        $r = is($r,"ary") ? $r : [];
 
         $tmp = [];
 
@@ -477,8 +476,6 @@ class JSON_AD extends AndromedaDriver
         {
             $tmp[] = arrayToObject($item,$classname);
         }
-
-        $this->clear_query();
 
         return $tmp;
     }
