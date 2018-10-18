@@ -69,6 +69,7 @@ class Factory extends Command
         $t->setChar("line", "");
 
         $t->insert(["name" => "Controllers", "requirements" => "name", "folder" => CONTROLLERS_PATH]);
+        $t->insert(["name" => "Models", "requirements" => "name", "folder" => MODELS_PATH]);
         $t->insert(["name" => "Commands", "requirements" => "name", "folder" => APP_PATH  . "commands" . DS]);
 
         echo $t->render();

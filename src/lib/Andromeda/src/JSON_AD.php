@@ -131,17 +131,20 @@ class JSON_AD extends AndromedaDriver
 
                     if ($tm)
                     {
-                        $records[$key] = $tm;
-                    }
-                    else
-                    {
-                        unset($records[$key]);
+                        $r[$table][$key] = $tm;
                     }
                 }
-                $r[$table] = $records;
             }
+
             $this->records = $r;
-            return empty($this->records) ? $this->tables : $this->records;
+
+            $t = [];
+            foreach ($this->tables as $table => $val)
+            {
+                $t[$table] = [];
+            }
+
+            return (! empty($r)) ? $r : $t;
         }
         else
         {
@@ -374,6 +377,14 @@ class JSON_AD extends AndromedaDriver
         $this->db = $this->tables = $this->records =null;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTables()
+    {
+        return array_keys($this->tables);
+    }
+
     # requests functions
 
 
@@ -401,7 +412,7 @@ class JSON_AD extends AndromedaDriver
 
         $r = $this->fetchAll($style) ;
 
-        return ( is($r,"ary") and count($r) > 0 ) ? array_values($r)[0] : [];
+        return ( is($r,"ary") and count($r) > 0 and is(array_values($r)[0],"ary") and count(array_values($r)[0])> 0) ? array_values(array_values($r)[0])[0] : [];
     }
 
     /**
@@ -418,17 +429,9 @@ class JSON_AD extends AndromedaDriver
 
         $r =  $this->trait_data();
 
-        $tm = [];
-
-        foreach ($r as $item)
-        {
-            $tm = array_merge($tm,$item);
-        }
-
-        $r = $tm;
         $this->clear_query();
 
-        return $r ? $r : [];
+        return $r;
     }
 
     /**
@@ -472,9 +475,16 @@ class JSON_AD extends AndromedaDriver
 
         $tmp = [];
 
-        foreach ($r as $item)
+        foreach ($r as $table => $records)
         {
-            $tmp[] = arrayToObject($item,$classname);
+            foreach ($records as $key => $record)
+            {
+                if (is($record,"ary"))
+                    $tmp[$table][$key] = arrayToObject($record,$classname);
+                else
+                    $tmp[$table][$key] = arrayToObject([$record],$classname);
+            }
+
         }
 
         return $tmp;
@@ -503,9 +513,11 @@ class JSON_AD extends AndromedaDriver
 
         $r = $this->trait_data() ;
 
+        $t = array_values($this->query['tables'])[0];
+
         $this->clear_query();
 
-        return (isset($r[$key])) ? $r[$key] : null;
+        return ( isset( $r [$t] [$key] ) ) ? $r [$t] [$key] : null;
     }
 
     /**
@@ -590,13 +602,14 @@ class JSON_AD extends AndromedaDriver
         {
             $tables = $this->trait_data();
 
-            foreach ($tables as $table => $r)
+
+            foreach ($tables as $table => $records)
             {
-                $r = is($r,"ary") ? $r : [];
+                $records = is($records,"ary") ? $records : [];
 
                 $k = [];
 
-                foreach ($r as $key => $record)
+                foreach ($records as $key => $record)
                 {
                     //for each item in the table
 
@@ -728,25 +741,24 @@ class JSON_AD extends AndromedaDriver
 
                 }// end records loop
 
-                $r = $this->trait_data();
-
-                foreach ($r as $key => $item)
+                foreach ($records as $key => $item)
                 {
                     if ( in_array($key, $k))
                     {
-                        if (isset($r[$key]))
+                        if (isset($records[$key]))
                         {
-                            unset($r[$key]);
+                            unset($records[$key]);
                         }
                     }
                 }
 
-                $this->refresh_table($r,$table);
+                $this->refresh_table($records,$table);
 
                 $this->clear_query();
 
                 return true;
             }
+
         } // end delete segment
     }
 

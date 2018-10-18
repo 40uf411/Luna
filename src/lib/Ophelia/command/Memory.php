@@ -1,6 +1,6 @@
 <?php
 
-namespace Luna\lib\Whirlpool\command;
+namespace Luna\lib\Ophelia\command;
 
 
 use Luna\services\Cli\Command;

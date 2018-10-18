@@ -85,7 +85,7 @@ return [
 
     Luna\services\Crypt::class => [
         "location" => "Crypt" . DS . "Crypt",
-        "cli" => false,
+        "cli" => true,
         "init" => false,
         "init_pram" => true,
         "config" => false,

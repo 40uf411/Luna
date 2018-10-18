@@ -25,6 +25,9 @@ function session($name, $value)
     return new \Luna\services\Session($name, $value);
 }
 
+/**
+ * @return \Luna\services\Timer\Time
+ */
 function now()
 {
     return (new \Luna\services\Timer\Time())->now();
@@ -90,14 +93,18 @@ function objectToObject($instance, $className)
     ));
 }
 
-function objectToArray($object) {
+function objectToArray($object)
+{
     $reflectionClass = new ReflectionClass(get_class($object));
+
     $array = array();
+
     foreach ($reflectionClass->getProperties() as $property) {
         $property->setAccessible(true);
         $array[$property->getName()] = $property->getValue($object);
         $property->setAccessible(false);
     }
+
     return $array;
 }
 

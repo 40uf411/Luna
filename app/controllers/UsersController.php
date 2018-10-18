@@ -9,7 +9,7 @@ use Luna\Services\{
     Schedule\Task,
     Storage
 };
-use Luna\lib\Whirlpool\Memorise;
+use Luna\lib\Ophelia\Memorise;
 
 class UsersController extends Controller
 {

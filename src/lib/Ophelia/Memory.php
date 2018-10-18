@@ -1,15 +1,13 @@
 <?php
-namespace Luna\lib\Whirlpool;
+namespace Luna\lib\Ophelia;
 
 
 use Luna\Andromeda\Andromeda;
 use Luna\services\Timer\Time;
+use Luna\services\Crypt;
 
 class Memory
 {
-
-    private static $connect = false;
-
     private $key;
     private $value;
     private $expire_date;
@@ -17,14 +15,55 @@ class Memory
     private $secure = false;
     private $pass;
 
-    public static function config($config)
+    /**
+     * @return mixed
+     */
+    public function getKey()
     {
-        self::$connect = Andromeda::connect([
-            "name"   => $config['db_name'],
-            "user"   => $config['db_user'],
-            "pass"   => $config['db_pass']
-        ]);
+        return $this->key;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpireDate()
+    {
+        return $this->expire_date;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSecure(): bool
+    {
+        return $this->secure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isForget(): bool
+    {
+        return $this->forget;
+    }
+    
+    
 
     /**
      * Memory constructor.
@@ -33,9 +72,6 @@ class Memory
      */
     public function __construct($value)
     {
-        if (!self::$connect)
-            error("Error! you can't use the memory without connect to databases");
-
         $this->value = $value;
         $t = (new Time())->now()->addDays(15);
 
@@ -53,9 +89,6 @@ class Memory
      */
     public function as($key)
     {
-        if (!self::$connect)
-            error("Error! you can't use the memory without connect to databases");
-
         $this->key = $key;
 
         return $this;
@@ -68,10 +101,6 @@ class Memory
      */
     public function until(Time $time)
     {
-        if (!self::$connect)
-            error("Error! you can't use the memory without connect to databases");
-
-
         $this->expire_date['year'] = $time->year();
         $this->expire_date['month'] = $time->month();
         $this->expire_date['day'] = $time->day();
@@ -88,18 +117,27 @@ class Memory
      */
     public function with_password($password)
     {
-        if (!self::$connect)
-            error("Error! you can't use the memory without connect to databases");
-
         $this->secure = true;
 
-        $this->pass = md5($password);
+        $this->pass = Crypt::password($password,PASSWORD_DEFAULT,['cost'=>12]);
 
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function forget_if_exist()
     {
         $this->forget = true;
+
+        return $this;
+    }
+
+    public function save()
+    {
+        Memorise::save($this);
+
+        return $this;
     }
 }

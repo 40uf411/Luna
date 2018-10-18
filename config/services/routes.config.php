@@ -13,14 +13,12 @@ use Luna\services\Http\{Response, Request};
  ***************************/
 
 Router::home(function(){
-    $name = (int) "1";
-});
+    echo "welcome to luna! try using a url that includes your name like <a href='/luna/hi/ali'>/hi/ali</a>! ";
+})->view('index');
 
 Router::any('/hi/$name', function($data){
     dump($data);
-})->pattern([
-    "name" => "/[0-9]/"
-]);
+});
 
 /*
 Router::any('/hi/$name',function($data){
@@ -31,9 +29,6 @@ Router::any('/hi/$name',function($data){
 
 /*
 Router::home()->view("index");
-
-
-
 
 Router::any('/hi/$name/$(int)age', function($data){
 

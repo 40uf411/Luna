@@ -4,6 +4,10 @@ namespace Luna\services\Cli\commands;
 
 
 use Luna\Andromeda\Andromeda;
+use Luna\Core\Model;
+use Luna\lib\Ophelia\Memorise;
+use Luna\lib\Ophelia\Memory;
+use Luna\lib\Ophelia\Remember;
 use Luna\services\Cli\{
     Auth, command, Progress, Printer, Table
 };
@@ -48,7 +52,6 @@ class LunaCommand extends Command
     /**
      * @param null $args
      * @throws \Error
-     * @throws \Exception
      */
     public  function __invoke($args = null)
     {
@@ -56,10 +59,12 @@ class LunaCommand extends Command
         {
             echo $this->help();
         }
+
         elseif ( $this->hasOpt("version") )
         {
             echo "v" . floatval(self::version);
         }
+
         elseif ( $this->hasOpt("serve") )
         {
             $p = new Printer();
@@ -80,13 +85,32 @@ class LunaCommand extends Command
             
             shell_exec("php -S localhost:$port -t public/");
         }
+
         elseif ( $this->hasOpt("test") ) 
         {
-            $a = Andromeda::connect(["name" => "test"])->lock();
+            /*$a = Andromeda::connect(["name" => "test"]);
             //$a->create_table("test1");
-            //$a->insert( ['id' => 8, "name" => "ali"])->inTo("test","test1")->exec();
-            //$a->delete()->from("test","test1")->where("id","==",6)->exec();
-            dump($a->select()->from("test1")->where("id","><",[6,8]));
+            //$a->insert( ['id' => 8, "name" => "ali"])->inTo("test","test1")->exec()
+            $a->insert("8",["id" => 8,"name" => "dude"])->inTo("test","test1")->exec();
+            dump($a->select()->from("test")->fetchAll());*/
+
+            //$m = Memorise::_("ali")->as("super_name")->until(now()->newtWeek())->with_password("tested")->forget_if_exist()->save();
+
+            dump(Remember::_("super_name","tested"));
+            /*
+            $memo = new Memory("   ");
+
+            $db = Andromeda::connect(["name" => "Ophelia" , "user" => "memo", "pass" => "mind"]);
+
+            $db->insert("8",["id" => 8,"name" => "dude"])->inTo("memory");
+
+            dump($db);
+
+            $db->exec();
+
+            dump($db->select()->from("memory")->fetchAll());*/
+            //User::config(["name" => "test"], "test");
+
         }
         else
         {
@@ -95,6 +119,7 @@ class LunaCommand extends Command
     }
 
     /**
+     *
      * @param $function
      * @param $args
      * @throws \Error
