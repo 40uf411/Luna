@@ -257,7 +257,7 @@ function is($variable, $type, $classname = "stdClass")
             return is_bool($variable);
             break;
 
-        case "fun":
+        case "func":
         case "function":
         case "callable":
             return is_callable($variable);

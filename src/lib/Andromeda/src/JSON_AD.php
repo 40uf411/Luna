@@ -624,6 +624,8 @@ class JSON_AD extends AndromedaDriver
 
                         if (array_key_exists($item, $record))
                         {
+                            $value[1] = (!is($value[1], 'function') and substr($value[1],0,7) == '$this->' and array_key_exists(str_replace('$this->','',$value[1]),$record)) ? $record[str_replace('$this->','',$value[1])] : $value[1];
+
                             switch ($value[0])
                             {
                                 case "==":
@@ -734,6 +736,41 @@ class JSON_AD extends AndromedaDriver
                                     }
                                     break;
 
+                                case "matches":
+                                case "verifies":
+                                    if (is($value[1],"function"))
+                                    {
+                                        echo 1;
+
+                                        $fun = $value[1];
+                                        if ( $fun($record[$item], $record))
+                                        {
+                                            $adm = false;
+
+                                            $k[] = $key;
+
+                                            break;
+                                        }
+                                    }
+                                    break;
+
+
+                                case "does not match":
+                                case "does not verify":
+                                    if (is($value[1],"function"))
+                                    {
+                                        $fun = $value[1];
+                                        if ( ! $fun($record[$item], $record))
+                                        {
+                                            $adm = false;
+
+                                            $k[] = $key;
+
+                                            break;
+                                        }
+                                    }
+                                    break;
+
                             }
                         }
 
@@ -794,6 +831,8 @@ class JSON_AD extends AndromedaDriver
 
                 if (array_key_exists($item, $record))
                 {
+                    $value[1] = (!is($value[1], 'function') and substr($value[1],0,7) == '$this->' and array_key_exists(str_replace('$this->','',$value[1]),$record)) ? $record[str_replace('$this->','',$value[1])] : $value[1];
+
                     switch ($value[0])
                     {
                         case "==":
@@ -904,6 +943,38 @@ class JSON_AD extends AndromedaDriver
                             }
                             break;
 
+                        case "matches":
+                        case "verifies":
+                            if (is($value[1],"function"))
+                            {
+                                $fun = $value[1];
+                                if ( ! $fun($record[$item], $record))
+                                {
+                                    $adm = false;
+
+                                    $k[$item] = $record[$item];
+
+                                    break;
+                                }
+                            }
+                            break;
+
+
+                        case "does not match":
+                        case "does not verify":
+                            if (is($value[1],"function"))
+                            {
+                                $fun = $value[1];
+                                if (  $fun($record[$item], $record))
+                                {
+                                    $adm = false;
+
+                                    $k[$item] = $record[$item];
+
+                                    break;
+                                }
+                            }
+                            break;
                     }
                 }
                 else
