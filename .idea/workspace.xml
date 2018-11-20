@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7337f40d-293b-4caf-aea4-fb1a6ae95a2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/services/Stream/FileStream.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/services/Stream/VideoStream.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/core/Validator.php" afterPath="$PROJECT_DIR$/src/core/Validator.php" />
       <change beforePath="$PROJECT_DIR$/src/helpers/functions.php" afterPath="$PROJECT_DIR$/src/helpers/functions.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Cli/Scanner.php" afterPath="$PROJECT_DIR$/src/services/Cli/Scanner.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Database/DB.php" afterPath="$PROJECT_DIR$/src/services/Database/DB.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Schedule/Schedule.php" afterPath="$PROJECT_DIR$/src/services/Schedule/Schedule.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Session/Session.php" afterPath="$PROJECT_DIR$/src/services/Session/Session.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Storage/Storage.php" afterPath="$PROJECT_DIR$/src/services/Storage/Storage.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/View/View.php" afterPath="$PROJECT_DIR$/src/services/View/View.php" />
+      <change beforePath="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" afterPath="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,30 +38,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Validator.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Validator.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/Validator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="53" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+            <state relative-caret-position="246">
+              <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
               <folding>
-                <element signature="e#201#283#0#PHP" expanded="false" />
-                <element signature="e#293#383#0#PHP" expanded="false" />
-                <element signature="e#389#476#0#PHP" expanded="false" />
-                <element signature="e#482#545#0#PHP" expanded="false" />
-                <element signature="e#550#617#0#PHP" expanded="false" />
-                <element signature="e#623#825#0#PHP" expanded="false" />
-                <element signature="e#830#1035#0#PHP" expanded="false" />
-                <element signature="e#1040#1245#0#PHP" expanded="false" />
-                <element signature="e#1250#1460#0#PHP" expanded="false" />
-                <element signature="e#1465#1671#0#PHP" expanded="false" />
-                <element signature="e#1676#1887#0#PHP" expanded="false" />
-                <element signature="e#1892#2174#0#PHP" expanded="false" />
-                <element signature="e#2179#2462#0#PHP" expanded="false" />
-                <element signature="e#2467#2681#0#PHP" expanded="false" />
-                <element signature="e#2686#2904#0#PHP" expanded="false" />
-                <element signature="e#2909#3129#0#PHP" expanded="false" />
-                <element signature="e#3134#3332#0#PHP" expanded="false" />
-                <element signature="e#3337#3552#0#PHP" expanded="false" />
+                <element signature="e#253#358#0#PHP" expanded="false" />
+                <element signature="e#368#458#0#PHP" expanded="false" />
+                <element signature="e#464#551#0#PHP" expanded="false" />
+                <element signature="e#557#620#0#PHP" expanded="false" />
+                <element signature="e#625#694#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -97,17 +76,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LunaCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="116" column="16" lean-forward="false" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FileStream.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/Stream/FileStream.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="287">
               <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scanner.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Scanner.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/Cli/Scanner.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
@@ -120,8 +109,8 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/helpers/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="343" column="64" lean-forward="true" selection-start-line="343" selection-start-column="64" selection-end-line="343" selection-end-column="64" />
+            <state relative-caret-position="1104">
+              <caret line="281" column="0" lean-forward="true" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,7 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PATH</find>
       <find>$split_cb</find>
       <find>self::$routes['']</find>
       <find>self::$routes[] = $r;</find>
@@ -168,6 +156,8 @@
       <find>$value[1] = (substr($value[1],0,7) == '$this-&gt;' and array_key_exists(str_replace('$this-&gt;','',$value[1]),$record)) ? $record[str_replace('$this-&gt;','',$value[1])] : $value[1];</find>
       <find>$value</find>
       <find>if ($this-&gt;isValid)</find>
+      <find>else</find>
+      <find>$this-&gt;valid = $this-&gt;tmp;</find>
     </findStrings>
     <replaceStrings>
       <replace>self::PATH</replace>
@@ -188,6 +178,9 @@
       <replace>$value[1] = (!is($value[1], 'function') and substr($value[1],0,7) == '$this-&gt;' and array_key_exists(str_replace('$this-&gt;','',$value[1]),$record)) ? $record[str_replace('$this-&gt;','',$value[1])] : $value[1];</replace>
       <replace>$key</replace>
       <replace>if ($this-&gt;isValid and array_key_exists($this-&gt;tmp,$this-&gt;data))</replace>
+      <replace>elseif()</replace>
+      <replace>if()</replace>
+      <replace>$this-&gt;valid[] = $this-&gt;tmp;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -238,10 +231,7 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/storage/framework/Andromeda/json/test/test.json" />
         <option value="$PROJECT_DIR$/storage/framework/Andromeda/json/test/db.json" />
-        <option value="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" />
         <option value="$PROJECT_DIR$/src/lib/Andromeda/src/JSON_AD.php" />
-        <option value="$PROJECT_DIR$/src/helpers/functions.php" />
-        <option value="$PROJECT_DIR$/src/core/Validator.php" />
         <option value="$PROJECT_DIR$/src/services/Database/DB.php" />
         <option value="$PROJECT_DIR$/src/services/Schedule/Schedule.php" />
         <option value="$PROJECT_DIR$/src/services/Session/Session.php" />
@@ -252,6 +242,9 @@
         <option value="$PROJECT_DIR$/src/services/Stream/VideoStream.php" />
         <option value="$PROJECT_DIR$/src/services/Stream/FileStream.php" />
         <option value="$PROJECT_DIR$/src/services/Cli/Scanner.php" />
+        <option value="$PROJECT_DIR$/src/helpers/functions.php" />
+        <option value="$PROJECT_DIR$/src/core/Validator.php" />
+        <option value="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" />
       </list>
     </option>
   </component>
@@ -361,7 +354,7 @@
       <path value="$PROJECT_DIR$/vendor/kevinlebrun/colors.php" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="607" />
     <option name="width" value="766" />
     <option name="height" value="735" />
@@ -407,6 +400,14 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Cli" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Luna" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Luna" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="services" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Cli" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="commands" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Luna" type="b2602c69:ProjectViewProjectNode" />
@@ -562,12 +563,12 @@
       <workItem from="1537337243792" duration="12000" />
       <workItem from="1540145411050" duration="2129000" />
       <workItem from="1540885705876" duration="4801000" />
-      <workItem from="1542667928198" duration="7914000" />
+      <workItem from="1542667928198" duration="13832000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490420000" />
+    <option name="totallyTimeSpent" value="496338000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -579,7 +580,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -623,7 +624,7 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="112" />
+      <option name="time" value="117" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -835,14 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="99" column="71" lean-forward="false" selection-start-line="99" selection-start-column="71" selection-end-line="99" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/framework/Andromeda/json/test/db.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -917,41 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="343" column="64" lean-forward="true" selection-start-line="343" selection-start-column="64" selection-end-line="343" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Validator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="53" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-          <folding>
-            <element signature="e#201#283#0#PHP" expanded="false" />
-            <element signature="e#293#383#0#PHP" expanded="false" />
-            <element signature="e#389#476#0#PHP" expanded="false" />
-            <element signature="e#482#545#0#PHP" expanded="false" />
-            <element signature="e#550#617#0#PHP" expanded="false" />
-            <element signature="e#623#825#0#PHP" expanded="false" />
-            <element signature="e#830#1035#0#PHP" expanded="false" />
-            <element signature="e#1040#1245#0#PHP" expanded="false" />
-            <element signature="e#1250#1460#0#PHP" expanded="false" />
-            <element signature="e#1465#1671#0#PHP" expanded="false" />
-            <element signature="e#1676#1887#0#PHP" expanded="false" />
-            <element signature="e#1892#2174#0#PHP" expanded="false" />
-            <element signature="e#2179#2462#0#PHP" expanded="false" />
-            <element signature="e#2467#2681#0#PHP" expanded="false" />
-            <element signature="e#2686#2904#0#PHP" expanded="false" />
-            <element signature="e#2909#3129#0#PHP" expanded="false" />
-            <element signature="e#3134#3332#0#PHP" expanded="false" />
-            <element signature="e#3337#3552#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/Database/DB.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -992,6 +950,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Cli/Scanner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="148" column="35" lean-forward="true" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1104">
+          <caret line="281" column="0" lean-forward="true" selection-start-line="281" selection-start-column="0" selection-end-line="281" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Stream/FileStream.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="116" column="16" lean-forward="false" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/Stream/VideoStream.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1012,19 +1002,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Stream/FileStream.php">
+    <entry file="file://$PROJECT_DIR$/src/core/Validator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/Cli/Scanner.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="148" column="35" lean-forward="true" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="246">
+          <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
+          <folding>
+            <element signature="e#253#358#0#PHP" expanded="false" />
+            <element signature="e#368#458#0#PHP" expanded="false" />
+            <element signature="e#464#551#0#PHP" expanded="false" />
+            <element signature="e#557#620#0#PHP" expanded="false" />
+            <element signature="e#625#694#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

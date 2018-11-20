@@ -251,7 +251,6 @@ function is($variable, $type, $classname = "stdClass")
             return is_array($variable);
             break;
 
-        case "b":
         case "bool":
         case "boolean":
             return is_bool($variable);
@@ -281,7 +280,6 @@ function is($variable, $type, $classname = "stdClass")
             return is_file($variable);
             break;
 
-        case "flt":
         case "float":
             return is_float($variable);
             break;
