@@ -321,7 +321,35 @@ function is($variable, $type, $classname = "stdClass")
             break;
 
         case "uploaded":
-            is_uploaded_file($variable);
+            return is_uploaded_file($variable);
+            break;
+
+        case "ip":
+            return filter_var($variable, FILTER_VALIDATE_IP);
+            break;
+
+        case "IPv4":
+            return filter_var($variable, FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
+            break;
+
+        case "IPv6":
+            return filter_var($variable, FILTER_VALIDATE_IP,FILTER_FLAG_IPV6);
+            break;
+
+        case "mac":
+            return filter_var($variable, FILTER_VALIDATE_MAC);
+            break;
+
+        case "email":
+            return filter_var($variable, FILTER_VALIDATE_EMAIL);
+            break;
+
+        case "domain":
+            return filter_var($variable, FILTER_VALIDATE_DOMAIN);
+            break;
+
+        case "url":
+            return filter_var($variable, FILTER_VALIDATE_URL);
             break;
 
         default:
