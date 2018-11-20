@@ -1,5 +1,5 @@
 # welcome to Luna an open source light weight PHP MVC framework 
-![Luna temparary logo](https://github.com/Sho-Oter/Luna/blob/master/luna-logo-10-2018.svg)
+![Luna temparary logo](luna-logo-10-2018.svg)
 
 Luna was built to be runnable in both web interface and CLI, with the same code and few changes.
 

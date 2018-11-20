@@ -16,7 +16,7 @@ use Luna\services\Console;
 class LunaCommand extends Command
 {
     private const version = 2.01;
-    
+
     public function setup()
     {
         parent::setup();
@@ -82,13 +82,14 @@ class LunaCommand extends Command
             echo $p->render(" Luna is listning on: ", ["blue", "bold"]) . $p->render("http://localhost:$port", "green") . NL;
             echo " Server started at: " . \date("D")  . " " . \date("M") . " " . \date("d") . " " . \date("Y") . " | " . \date("H:i:s") . NL;
             echo " Press Ctrl-C to quit." . NL;
-            
+
             shell_exec("php -S localhost:$port -t public/");
         }
 
-        elseif ( $this->hasOpt("test") ) 
+        elseif ( $this->hasOpt("test") )
         {
-            /*$a = Andromeda::connect(["name" => "test"]);
+            $a = Andromeda::connect(["name" => "test"]);
+            /*
             //$a->create_table("test1");
             //$a->insert( ['id' => 8, "name" => "ali"])->inTo("test","test1")->exec()
             $a->insert("8",["id" => 8,"name" => "dude"])->inTo("test","test1")->exec();
@@ -96,7 +97,7 @@ class LunaCommand extends Command
 
             //$m = Memorise::_("ali")->as("super_name")->until(now()->newtWeek())->with_password("tested")->forget_if_exist()->save();
 
-            dump(Remember::_("super_name","tested"));
+            dump($a->select()->from("test")->where("id","!=", '$this->name')->fetchAll());
             /*
             $memo = new Memory("   ");
 
