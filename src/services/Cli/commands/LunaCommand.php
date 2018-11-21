@@ -5,6 +5,7 @@ namespace Luna\services\Cli\commands;
 
 use Luna\Andromeda\Andromeda;
 use Luna\Core\Model;
+use Luna\Core\Validator;
 use Luna\lib\Ophelia\Memorise;
 use Luna\lib\Ophelia\Memory;
 use Luna\lib\Ophelia\Remember;
@@ -88,7 +89,7 @@ class LunaCommand extends Command
 
         elseif ( $this->hasOpt("test") )
         {
-            $a = Andromeda::connect(["name" => "test"]);
+            //$a = Andromeda::connect(["name" => "test"]);
             /*
             //$a->create_table("test1");
             //$a->insert( ['id' => 8, "name" => "ali"])->inTo("test","test1")->exec()
@@ -97,7 +98,7 @@ class LunaCommand extends Command
 
             //$m = Memorise::_("ali")->as("super_name")->until(now()->newtWeek())->with_password("tested")->forget_if_exist()->save();
 
-            dump($a->select()->from("test")->where("id","!=", '$this->name')->fetchAll());
+            //dump($a->select()->from("test")->where("id","!=", '$this->name')->fetchAll());
             /*
             $memo = new Memory("   ");
 
@@ -111,6 +112,12 @@ class LunaCommand extends Command
 
             dump($db->select()->from("memory")->fetchAll());*/
             //User::config(["name" => "test"], "test");
+            $v = new Validator();
+            $v->from(["name"=>"ali","age" =>18])->check("name")->in("ali","alex")
+                ->and("age")->between(10,19)->equals(18)->biggerOrEquals(5);
+
+            dump($v->ok);
+
 
         }
         else
