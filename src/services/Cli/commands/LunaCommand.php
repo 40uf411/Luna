@@ -112,7 +112,7 @@ class LunaCommand extends Command
 
             dump($db->select()->from("memory")->fetchAll());*/
             //User::config(["name" => "test"], "test");
-            $v = new Validator();
+            $v = Validator::make();
             $v->from(["name"=>"ali","age" =>18])->check("name")->in("ali","alex")
                 ->and("age")->between(10,19)->equals(18)->biggerOrEquals(5);
 
