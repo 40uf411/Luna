@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7337f40d-293b-4caf-aea4-fb1a6ae95a2b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/core/Validator.php" afterPath="$PROJECT_DIR$/src/core/Validator.php" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/functions.php" afterPath="$PROJECT_DIR$/src/helpers/functions.php" />
-      <change beforePath="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" afterPath="$PROJECT_DIR$/src/services/Cli/commands/LunaCommand.php" />
-    </list>
+    <list default="true" id="7337f40d-293b-4caf-aea4-fb1a6ae95a2b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,14 +37,30 @@
       <file leaf-file-name="Validator.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/Validator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
+            <state relative-caret-position="617">
+              <caret line="187" column="5" lean-forward="true" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
               <folding>
                 <element signature="e#253#358#0#PHP" expanded="false" />
                 <element signature="e#368#458#0#PHP" expanded="false" />
                 <element signature="e#464#551#0#PHP" expanded="false" />
                 <element signature="e#557#620#0#PHP" expanded="false" />
                 <element signature="e#625#694#0#PHP" expanded="false" />
+                <element signature="e#742#1276#0#PHP" expanded="false" />
+                <element signature="e#1282#1739#0#PHP" expanded="false" />
+                <element signature="e#1744#2202#0#PHP" expanded="false" />
+                <element signature="e#2207#2672#0#PHP" expanded="false" />
+                <element signature="e#2677#3140#0#PHP" expanded="false" />
+                <element signature="e#3145#3609#0#PHP" expanded="false" />
+                <element signature="e#3614#4077#0#PHP" expanded="false" />
+                <element signature="e#4082#4649#0#PHP" expanded="false" />
+                <element signature="e#4654#5222#0#PHP" expanded="false" />
+                <element signature="e#5227#5700#0#PHP" expanded="false" />
+                <element signature="e#5705#6176#0#PHP" expanded="false" />
+                <element signature="e#6181#6669#0#PHP" expanded="false" />
+                <element signature="e#6674#7158#0#PHP" expanded="false" />
+                <element signature="e#7163#7631#0#PHP" expanded="false" />
+                <element signature="e#7636#8101#0#PHP" expanded="false" />
+                <element signature="e#8106#8591#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -354,7 +366,7 @@
       <path value="$PROJECT_DIR$/vendor/kevinlebrun/colors.php" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="607" />
     <option name="width" value="766" />
     <option name="height" value="735" />
@@ -563,12 +575,12 @@
       <workItem from="1537337243792" duration="12000" />
       <workItem from="1540145411050" duration="2129000" />
       <workItem from="1540885705876" duration="4801000" />
-      <workItem from="1542667928198" duration="13832000" />
+      <workItem from="1542667928198" duration="13989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496338000" />
+    <option name="totallyTimeSpent" value="496495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,7 +592,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -624,7 +636,7 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="117" />
+      <option name="time" value="118" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1004,14 +1016,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Validator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
+        <state relative-caret-position="617">
+          <caret line="187" column="5" lean-forward="true" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
           <folding>
             <element signature="e#253#358#0#PHP" expanded="false" />
             <element signature="e#368#458#0#PHP" expanded="false" />
             <element signature="e#464#551#0#PHP" expanded="false" />
             <element signature="e#557#620#0#PHP" expanded="false" />
             <element signature="e#625#694#0#PHP" expanded="false" />
+            <element signature="e#742#1276#0#PHP" expanded="false" />
+            <element signature="e#1282#1739#0#PHP" expanded="false" />
+            <element signature="e#1744#2202#0#PHP" expanded="false" />
+            <element signature="e#2207#2672#0#PHP" expanded="false" />
+            <element signature="e#2677#3140#0#PHP" expanded="false" />
+            <element signature="e#3145#3609#0#PHP" expanded="false" />
+            <element signature="e#3614#4077#0#PHP" expanded="false" />
+            <element signature="e#4082#4649#0#PHP" expanded="false" />
+            <element signature="e#4654#5222#0#PHP" expanded="false" />
+            <element signature="e#5227#5700#0#PHP" expanded="false" />
+            <element signature="e#5705#6176#0#PHP" expanded="false" />
+            <element signature="e#6181#6669#0#PHP" expanded="false" />
+            <element signature="e#6674#7158#0#PHP" expanded="false" />
+            <element signature="e#7163#7631#0#PHP" expanded="false" />
+            <element signature="e#7636#8101#0#PHP" expanded="false" />
+            <element signature="e#8106#8591#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
