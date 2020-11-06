@@ -134,31 +134,31 @@ class ErrorHandler extends Service
         return true;
     }
 
-    public static function Exception_handler( $exeption)
+    public static function Exception_handler( $exception)
     {
         echo "<hr>";
-        if ($exeption instanceof \Exception)
+        if ($exception instanceof \Exception)
         {
-            echo "<br><b>Exception threw [ code : " . $exeption->getCode() . "]</b>";
-            echo "<br><b>Line : </b>" . $exeption->getLine();
-            echo "<br><b>File : </b>" . $exeption->getFile();
-            echo "<br><b>Message : </b>" . $exeption->getMessage();
-            echo "<br><b>Previous : </b>" . $exeption->getPrevious();
+            echo "<br><b>Exception threw [ code : " . $exception->getCode() . "]</b>";
+            echo "<br><b>Line : </b>" . $exception->getLine();
+            echo "<br><b>File : </b>" . $exception->getFile();
+            echo "<br><b>Message : </b>" . $exception->getMessage();
+            echo "<br><b>Previous : </b>" . $exception->getPrevious();
             echo "<br><b>Trace</b>";
             dump(
-                $exeption->getTrace()
+                $exception->getTrace()
             );
         }
-        elseif ($exeption instanceof \Error)
+        elseif ($exception instanceof \Error)
         {
-            echo "<br><b>Exception threw [ code : " . $exeption->getCode() . "]</b>";
-            echo "<br><b>Line : </b>" . $exeption->getLine();
-            echo "<br><b>File : </b>" . $exeption->getFile();
-            echo "<br><b>Message : </b>" . $exeption->getMessage();
-            echo "<br><b>Previous : </b>" . $exeption->getPrevious();
+            echo "<br><b>Exception threw [ code : " . $exception->getCode() . "]</b>";
+            echo "<br><b>Line : </b>" . $exception->getLine();
+            echo "<br><b>File : </b>" . $exception->getFile();
+            echo "<br><b>Message : </b>" . $exception->getMessage();
+            echo "<br><b>Previous : </b>" . $exception->getPrevious();
             echo "<br><b>Trace</b>";
             dump(
-                $exeption->getTrace()
+                $exception->getTrace()
             );
         }
         echo "<hr>";
